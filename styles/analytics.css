@@ -1,0 +1,774 @@
+/* ==========================================================================
+   ANALYTICS DASHBOARD (an-*)
+   Scoped to .main-content--analytics
+   ========================================================================== */
+
+/* Outer Content Override */
+.main-content--analytics {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── Page Header ── */
+.an-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.an-header__eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.25rem;
+}
+
+.an-header__title {
+  font-family: var(--font-headline);
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: var(--on-surface);
+  letter-spacing: -0.03em;
+}
+
+.an-header__subtitle {
+  font-size: 0.875rem;
+  color: var(--on-surface-variant);
+  margin-top: 0.25rem;
+}
+
+.an-header__pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(28, 32, 40, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(79, 219, 200, 0.15);
+  border-radius: var(--radius-lg, 0.5rem);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.an-header__pill-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--tertiary);
+  animation: pulse 2s infinite;
+}
+
+/* ── Glass Card (base for all analytics panels) ── */
+.an-glass {
+  background: rgba(28, 32, 40, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(79, 219, 200, 0.1);
+  border-radius: var(--radius-xl, 0.75rem);
+  padding: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.an-glass:hover {
+  transform: scale(1.01);
+}
+
+.an-glass--no-hover:hover {
+  transform: none;
+}
+
+.an-glow {
+  box-shadow: 0 0 20px rgba(79, 219, 200, 0.15);
+}
+
+/* ── KPI Cards ── */
+.an-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .an-kpi-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .an-kpi-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.an-kpi {
+  padding: 1.25rem;
+}
+
+.an-kpi__label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--on-surface-variant);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+}
+
+.an-kpi__row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.an-kpi__value {
+  font-family: var(--font-headline);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--on-surface);
+}
+
+.an-kpi__value--accent {
+  color: var(--tertiary);
+}
+
+.an-kpi__unit {
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-left: 0.25rem;
+  color: var(--on-surface-variant);
+}
+
+.an-kpi__trend {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: transform 0.3s;
+}
+
+.an-kpi__trend--positive {
+  color: var(--tertiary);
+}
+
+.an-kpi__trend--negative {
+  color: var(--error);
+}
+
+.an-glass:hover .an-kpi__trend {
+  transform: translateY(-2px);
+}
+
+.an-kpi__trend .material-symbols-outlined {
+  font-size: 0.875rem;
+}
+
+.an-kpi__bar {
+  height: 0.25rem;
+  width: 100%;
+  background-color: var(--surface-container);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.an-kpi__bar-fill {
+  height: 100%;
+  background-color: var(--tertiary);
+  border-radius: inherit;
+  box-shadow: 0 0 10px rgba(79, 219, 200, 0.4);
+}
+
+/* ── Middle Split Grid (AI vs Traditional + Vehicle Load Trend) ── */
+.an-middle-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .an-middle-grid {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+/* AI vs Traditional Panel */
+.an-comparison__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.an-comparison__title {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.an-comparison__icon {
+  color: var(--tertiary);
+}
+
+.an-comparison__metric {
+  margin-bottom: 1.5rem;
+}
+
+.an-comparison__metric-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--on-surface-variant);
+  margin-bottom: 0.5rem;
+}
+
+.an-comparison__metric-value {
+  color: var(--tertiary);
+}
+
+.an-comparison__bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.an-bar-track {
+  height: 0.5rem;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.an-bar-track--ai {
+  background-color: var(--surface-container-highest);
+}
+
+.an-bar-track--traditional {
+  background-color: rgba(69, 72, 79, 0.3);
+}
+
+.an-bar-fill--ai {
+  height: 100%;
+  background-color: var(--tertiary);
+  border-radius: inherit;
+  box-shadow: 0 0 10px rgba(79, 219, 200, 0.4);
+}
+
+.an-bar-fill--trad {
+  height: 100%;
+  background-color: rgba(69, 72, 79, 0.6);
+  border-radius: inherit;
+}
+
+.an-insight-box {
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  background: rgba(79, 219, 200, 0.05);
+  border: 1px solid rgba(79, 219, 200, 0.1);
+  border-radius: var(--radius-lg, 0.5rem);
+  text-align: center;
+}
+
+.an-insight-box__text {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  line-height: 1.6;
+}
+
+/* Vehicle Load Trend */
+.an-trend__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.an-trend__title {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.an-trend__subtitle {
+  font-size: 0.75rem;
+  color: var(--on-surface-variant);
+}
+
+.an-trend__legend {
+  display: flex;
+  gap: 1rem;
+}
+
+.an-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.an-legend-item--live {
+  color: var(--tertiary);
+}
+
+.an-legend-item--hist {
+  color: var(--on-surface-variant);
+}
+
+.an-legend-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+}
+
+.an-legend-dot--live {
+  background-color: var(--tertiary);
+}
+
+.an-legend-dot--hist {
+  background-color: var(--outline-variant);
+}
+
+.an-chart-container {
+  position: relative;
+  width: 100%;
+  height: 240px;
+}
+
+.an-chart-container svg {
+  width: 100%;
+  height: 100%;
+}
+
+.an-chart-hover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.an-chart-container:hover .an-chart-hover {
+  opacity: 1;
+}
+
+.an-chart-tooltip {
+  background-color: var(--surface-bright);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-lg, 0.5rem);
+  border: 1px solid rgba(79, 219, 200, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.an-chart-tooltip__label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--tertiary);
+}
+
+.an-chart-tooltip__value {
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: var(--on-surface);
+}
+
+.an-chart-x-axis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding: 0 0.5rem;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+  letter-spacing: 0.15em;
+}
+
+/* ── Bottom 4-Column Grid ── */
+.an-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .an-bottom-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .an-bottom-grid {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+}
+
+/* Vehicle Class Donut */
+.an-donut-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.an-donut-svg {
+  transform: rotate(-90deg);
+}
+
+.an-donut-center {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.an-donut-center__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--on-surface-variant);
+}
+
+.an-donut-center__value {
+  font-family: var(--font-headline);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--on-surface);
+}
+
+.an-class-legend {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.an-class-legend__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.an-class-legend__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 2px;
+}
+
+.an-class-legend__text {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--on-surface-variant);
+}
+
+/* Arm Specific Health */
+.an-arm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.an-arm-header__title {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.an-arm-header__badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--tertiary);
+}
+
+.an-arm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.an-arm-card {
+  padding: 1rem;
+  background-color: var(--surface-container-low);
+  border-radius: var(--radius-lg, 0.5rem);
+  border: 1px solid rgba(79, 219, 200, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.an-arm-card--congested {
+  border-color: rgba(255, 113, 108, 0.15);
+}
+
+.an-arm-card__label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--on-surface-variant);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.25rem;
+}
+
+.an-arm-card__status {
+  font-family: var(--font-headline);
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--on-surface);
+}
+
+.an-arm-card__status--congested {
+  color: var(--error);
+}
+
+.an-arm-card__status--moderate {
+  color: var(--tertiary);
+}
+
+.an-arm-indicator {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.an-arm-indicator--optimal {
+  background-color: rgba(79, 219, 200, 0.2);
+}
+
+.an-arm-indicator--congested {
+  background-color: rgba(255, 113, 108, 0.2);
+}
+
+.an-arm-indicator--moderate {
+  background-color: rgba(172, 210, 255, 0.2);
+}
+
+.an-arm-dot {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+}
+
+.an-arm-dot--optimal {
+  background-color: var(--tertiary);
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 10px rgba(79, 219, 200, 0.4);
+}
+
+.an-arm-dot--congested {
+  background-color: var(--error);
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.an-arm-dot--moderate {
+  background-color: var(--tertiary-fixed-dim, #85b7ee);
+}
+
+/* AI Prediction Panel */
+.an-prediction {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(79, 219, 200, 0.05), transparent);
+  border: 1px solid rgba(79, 219, 200, 0.2);
+}
+
+.an-prediction__glow {
+  position: absolute;
+  top: -1.5rem;
+  right: -1.5rem;
+  width: 6rem;
+  height: 6rem;
+  background: rgba(79, 219, 200, 0.1);
+  border-radius: 50%;
+  filter: blur(48px);
+}
+
+.an-prediction__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.an-prediction__title {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.an-prediction__icon {
+  color: var(--tertiary);
+}
+
+.an-prediction__forecast {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--on-surface-variant);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+}
+
+.an-prediction__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.an-prediction__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.an-prediction__row-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--on-surface);
+}
+
+.an-prediction__row-value {
+  font-weight: 800;
+}
+
+.an-prediction__row-value--positive {
+  color: var(--tertiary);
+}
+
+.an-prediction__row-value--warning {
+  color: var(--error);
+}
+
+.an-prediction__divider {
+  border-top: 1px solid rgba(79, 219, 200, 0.1);
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+.an-prediction__note {
+  font-size: 0.75rem;
+  color: var(--on-surface-variant);
+  line-height: 1.6;
+}
+
+.an-prediction__note strong {
+  color: var(--tertiary);
+  font-weight: 700;
+}
+
+/* ── AI Summary Footer ── */
+.an-summary {
+  border-left: 4px solid var(--tertiary);
+  box-shadow: 0 8px 32px rgba(79, 219, 200, 0.05);
+  padding: 2rem;
+}
+
+.an-summary__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .an-summary__content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.an-summary__left {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.an-summary__icon-ring {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: rgba(79, 219, 200, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.an-summary__icon-ring .material-symbols-outlined {
+  font-size: 1.75rem;
+  color: var(--tertiary);
+  font-variation-settings: 'FILL' 1;
+}
+
+.an-summary__title {
+  font-family: var(--font-headline);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--on-surface);
+  margin-bottom: 0.25rem;
+}
+
+.an-summary__body {
+  font-size: 0.875rem;
+  color: var(--on-surface-variant);
+  line-height: 1.6;
+}
+
+.an-summary__body strong {
+  color: var(--tertiary);
+  font-weight: 700;
+}
+
+.an-summary__actions {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.an-summary__btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--surface-container-highest);
+  color: var(--on-surface);
+  border-radius: var(--radius-xl, 0.75rem);
+  font-weight: 700;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.an-summary__btn:hover {
+  background-color: var(--surface-bright);
+}
+
+.an-summary__btn .material-symbols-outlined {
+  font-size: 1rem;
+}

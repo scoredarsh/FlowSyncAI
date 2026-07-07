@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowSync AI - Safety Matrix</title>
+  <meta name="description" content="Real-time predictive hazard monitoring & mitigation system." />
+  <link rel="stylesheet" href="/styles/index.css" />
+</head>
+
+<body>
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__logo">
+      <h1>FlowSync AI</h1>
+      <p>Cinematic Intelligence</p>
+    </div>
+
+    <nav class="sidebar__nav">
+      <a href="/index.html" class="sidebar__link" data-nav="command">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Command Center</span>
+      </a>
+      <a href="/junction-sim.html" class="sidebar__link" data-nav="junction">
+        <span class="material-symbols-outlined">simulation</span>
+        <span>Junction Sim</span>
+      </a>
+      <a href="/vehicle-detection.html" class="sidebar__link" data-nav="detection">
+        <span class="material-symbols-outlined">detection_and_zone</span>
+        <span>Vehicle Detection</span>
+      </a>
+      <a href="/safety-matrix.html" class="sidebar__link sidebar__link--active" data-nav="safety">
+        <span class="material-symbols-outlined">security</span>
+        <span>Safety Matrix</span>
+      </a>
+      <a href="/emergency-response.html" class="sidebar__link sidebar__link--emergency" data-nav="emergency">
+        <span class="material-symbols-outlined">emergency</span>
+        <span>Emergency Response</span>
+      </a>
+      <a href="/analytics.html" class="sidebar__link" data-nav="analytics">
+        <span class="material-symbols-outlined">insights</span>
+        <span>Analytics</span>
+      </a>
+    </nav>
+
+    <div class="sidebar__bottom">
+      <a href="/settings.html" class="sidebar__link" data-nav="settings">
+        <span class="material-symbols-outlined">settings</span>
+        <span>Settings</span>
+      </a>
+      <a href="#" class="sidebar__link" id="logoutBtn">
+        <span class="material-symbols-outlined">logout</span>
+        <span>Sign Out</span>
+      </a>
+
+    </div>
+  </aside>
+
+  <!-- ═══ TOP NAVBAR ═══ -->
+  <header class="navbar">
+    <div class="navbar__search">
+      <span class="material-symbols-outlined">search</span>
+      <input type="text" placeholder="Search hazard zones, violations, or incidents..." />
+    </div>
+
+    <div class="navbar__actions">
+      <button class="navbar__notif-btn" id="notifBtn">
+        <span class="material-symbols-outlined">notifications</span>
+        <span class="navbar__notif-dot"></span>
+      </button>
+
+      <div class="navbar__sync-badge">
+        <span class="material-symbols-outlined">sync</span>
+        <span>Live Sync</span>
+      </div>
+
+      <div class="navbar__user">
+        <div class="navbar__user-info">
+          <p class="name">Commander Shepard</p>
+          <p class="role">Central District Authority</p>
+        </div>
+        <img
+          class="navbar__avatar"
+          alt="User Profile"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFFtlV9oycZ3wJhc7_Z3_oM8yOfJvB0ykfPElqm-F9oqtOfB01Mly_9QgdBXzwLfE4u31FBYyIFSLb7vldPHh8XNxP8N9iscv4eYjkrhSPfNJ47XaIRY2l3519nVeYuPYvturqN7h5YUuJSXukAycPBaRwNfcF1YE5ZxrONkUT8XP_xobA2pRqezJmCbr1zSGAJqH89tWGsuzy3fkdvPclbGu-_Lf4dKJgysojnWPj6NNb2pdDuK2_udrFh2t00jfKsFOqL4-xLJ6C"
+        />
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="sm-layout">
+    <!-- Ambient Background Glows -->
+    <div class="sm-layout__glow--cyan"></div>
+    <div class="sm-layout__glow--red"></div>
+
+    <div class="sm-content">
+      <!-- Page Header -->
+      <div class="sm-header">
+        <div>
+          <h1 class="sm-header__title">Safety Matrix</h1>
+          <p class="sm-header__subtitle">Real-time predictive hazard monitoring & mitigation system</p>
+        </div>
+        <div class="sm-status-badge sm-glass">
+          <span class="sm-status-badge__dot"></span>
+          <span class="sm-status-badge__text">System: Nominal</span>
+        </div>
+      </div>
+
+      <!-- KPI Row -->
+      <div class="sm-kpi-row">
+        <!-- Safety Score -->
+        <div class="sm-kpi sm-glass">
+          <div class="sm-kpi__top">
+            <span class="sm-kpi__label">Safety Score</span>
+            <span class="material-symbols-outlined sm-kpi__icon sm-kpi__icon--primary">analytics</span>
+          </div>
+          <div class="sm-kpi__body">
+            <div class="sm-score-ring">
+              <svg>
+                <circle class="sm-score-ring__bg" cx="28" cy="28" r="24"></circle>
+                <circle class="sm-score-ring__fill" cx="28" cy="28" r="24"></circle>
+              </svg>
+              <span class="sm-score-ring__val">78</span>
+            </div>
+            <div>
+              <div class="sm-kpi__metric-title">Moderate Risk</div>
+              <div class="sm-kpi__metric-sub">-2.4% vs last hour</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Risks -->
+        <div class="sm-kpi sm-glass sm-kpi--alert">
+          <div class="sm-kpi__top">
+            <span class="sm-kpi__label">Active Risks</span>
+            <span class="material-symbols-outlined sm-kpi__icon sm-kpi__icon--error" style="font-variation-settings: 'FILL' 1;">warning</span>
+          </div>
+          <div class="sm-kpi__val sm-kpi__val--error">3 Zones</div>
+          <div class="sm-kpi__val-sub">High-risk concentration</div>
+        </div>
+
+        <!-- Near-Miss Events -->
+        <div class="sm-kpi sm-glass">
+          <div class="sm-kpi__top">
+            <span class="sm-kpi__label">Near-Miss Events</span>
+            <span class="material-symbols-outlined sm-kpi__icon sm-kpi__icon--muted">car_crash</span>
+          </div>
+          <div class="sm-kpi__val sm-kpi__val--default">03</div>
+          <div class="sm-kpi__val-sub">Detected in last 2 mins</div>
+        </div>
+
+        <!-- Active Violations -->
+        <div class="sm-kpi sm-glass">
+          <div class="sm-kpi__top">
+            <span class="sm-kpi__label">Active Violations</span>
+            <span class="material-symbols-outlined sm-kpi__icon sm-kpi__icon--tertiary">gavel</span>
+          </div>
+          <div class="sm-kpi__val sm-kpi__val--default">08</div>
+          <div class="sm-kpi__val-sub">Unresolved detections</div>
+        </div>
+
+        <!-- Weather Impact -->
+        <div class="sm-kpi sm-glass">
+          <div class="sm-kpi__top">
+            <span class="sm-kpi__label">Weather Impact</span>
+            <span class="material-symbols-outlined sm-kpi__icon sm-kpi__icon--primary">cloudy_snowing</span>
+          </div>
+          <div class="sm-kpi__weather-val">Rain → +22% Risk</div>
+          <div class="sm-kpi__val-sub">Current surface: Wet</div>
+        </div>
+      </div>
+
+      <!-- Main 12-Col Grid -->
+      <div class="sm-grid">
+
+        <!-- LEFT SIDE: Heatmap + Prediction -->
+        <div class="sm-grid__left">
+
+          <!-- Real-Time Risk Heatmap -->
+          <div class="sm-heatmap sm-glass">
+            <div class="sm-heatmap__header">
+              <h3 class="sm-heatmap__title">
+                <span class="material-symbols-outlined">map</span>
+                Real-Time Risk Heatmap
+              </h3>
+              <span class="sm-heatmap__live-badge">LIVE DATA</span>
+            </div>
+            <div class="sm-heatmap__viewport">
+              <!-- Map Background -->
+              <div class="sm-heatmap__img-container">
+                <img class="sm-heatmap__img" alt="Aerial intersection view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMH0_xPogsiM-_gf4d9EIqSXesr1nj53yPYu8Yqm4looCDwdqsl_uTw8UbTGfvLi1IDBSpnm8BPioELBWaQ4EOw3Bxs31R6rgzM1O5b2jUKUQUAJvzoWqWDk32HUAdLDr2ioP5ZHZl_JaNKtbBP1AU3XpWFAQrc7NyW4k6-OnvafcYqWXFCWe8X1ZVoj-ZNMEedbVfjqyUGPOkE8KJfAEO6B0JU3tPn6zWehQlCpbDwAEpzjLImBjK36X__3t5UQ3jYKRBo5YWJ5Y" />
+              </div>
+              <!-- Risk Zones -->
+              <div class="sm-heatmap__zone sm-heatmap__zone--danger"></div>
+              <div class="sm-heatmap__zone sm-heatmap__zone--safe"></div>
+              <div class="sm-heatmap__zone sm-heatmap__zone--moderate"></div>
+              <!-- Pulsing Indicator -->
+              <div class="sm-heatmap__indicator">
+                <span class="sm-heatmap__ping">
+                  <span class="sm-heatmap__ping-ring"></span>
+                  <span class="sm-heatmap__ping-dot"></span>
+                </span>
+                <div class="sm-heatmap__ping-label sm-glass">HIGH CONFLICT ZONE</div>
+              </div>
+              <!-- Legend -->
+              <div class="sm-heatmap__legend sm-glass">
+                <div class="sm-heatmap__legend-item">
+                  <div class="sm-heatmap__legend-dot sm-heatmap__legend-dot--danger"></div>
+                  <span class="sm-heatmap__legend-text">High Hazard</span>
+                </div>
+                <div class="sm-heatmap__legend-item">
+                  <div class="sm-heatmap__legend-dot sm-heatmap__legend-dot--moderate"></div>
+                  <span class="sm-heatmap__legend-text">Moderate</span>
+                </div>
+                <div class="sm-heatmap__legend-item">
+                  <div class="sm-heatmap__legend-dot sm-heatmap__legend-dot--safe"></div>
+                  <span class="sm-heatmap__legend-text">Safe Flow</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Predictive Risk Forecast -->
+          <div class="sm-forecast sm-glass">
+            <div class="sm-forecast__header">
+              <div>
+                <h3 class="sm-forecast__title">Predictive Risk Forecast</h3>
+                <div class="sm-forecast__alert">
+                  <span class="material-symbols-outlined sm-kpi__icon sm-kpi__icon--error" style="font-variation-settings: 'FILL' 1; font-size: 0.875rem;">trending_up</span>
+                  <span class="sm-forecast__alert-text">High accident probability in next 5 minutes</span>
+                </div>
+              </div>
+              <button class="sm-forecast__more">
+                <span class="material-symbols-outlined">more_vert</span>
+              </button>
+            </div>
+            <div class="sm-chart">
+              <div class="sm-chart__bar sm-chart__bar--low" style="height: 20%;"></div>
+              <div class="sm-chart__bar sm-chart__bar--low" style="height: 25%;"></div>
+              <div class="sm-chart__bar sm-chart__bar--low" style="height: 30%;"></div>
+              <div class="sm-chart__bar sm-chart__bar--low" style="height: 22%;"></div>
+              <div class="sm-chart__bar sm-chart__bar--moderate" style="height: 45%;"></div>
+              <div class="sm-chart__bar sm-chart__bar--moderate" style="height: 55%;"></div>
+              <div class="sm-chart__bar sm-chart__bar--peak" style="height: 85%;">
+                <div class="sm-chart__peak-label sm-glass">PEAK RISK (92%)</div>
+              </div>
+              <div class="sm-chart__bar sm-chart__bar--high" style="height: 70%;"></div>
+              <div class="sm-chart__bar sm-chart__bar--moderate" style="height: 50%;"></div>
+              <div class="sm-chart__bar sm-chart__bar--low" style="height: 30%;"></div>
+            </div>
+            <div class="sm-chart__timeline">
+              <span>NOW</span>
+              <span>+5 MIN</span>
+              <span>+10 MIN</span>
+              <span>+15 MIN</span>
+              <span>+20 MIN</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT SIDE: Micro-panels -->
+        <div class="sm-grid__right">
+
+          <!-- Collision Risk by Arm -->
+          <div class="sm-collision sm-glass">
+            <h4 class="sm-collision__title">Collision Risk by Arm</h4>
+            <div class="sm-collision__list">
+              <div class="sm-collision__item">
+                <div class="sm-collision__item-header">
+                  <span>North Arm</span>
+                  <span class="sm-collision__status--low">LOW</span>
+                </div>
+                <div class="sm-collision__track">
+                  <div class="sm-collision__fill sm-collision__fill--safe" style="width: 15%"></div>
+                </div>
+              </div>
+              <div class="sm-collision__item">
+                <div class="sm-collision__item-header">
+                  <span>South Arm</span>
+                  <span class="sm-collision__status--moderate">MODERATE</span>
+                </div>
+                <div class="sm-collision__track">
+                  <div class="sm-collision__fill sm-collision__fill--moderate" style="width: 55%"></div>
+                </div>
+              </div>
+              <div class="sm-collision__item">
+                <div class="sm-collision__item-header">
+                  <span class="sm-collision__arm--high">East Arm</span>
+                  <span class="sm-collision__status--high">HIGH</span>
+                </div>
+                <div class="sm-collision__track">
+                  <div class="sm-collision__fill sm-collision__fill--danger" style="width: 88%"></div>
+                </div>
+              </div>
+              <div class="sm-collision__item">
+                <div class="sm-collision__item-header">
+                  <span class="sm-collision__arm--optimal">West Arm</span>
+                  <span class="sm-collision__status--optimal">OPTIMAL</span>
+                </div>
+                <div class="sm-collision__track">
+                  <div class="sm-collision__fill sm-collision__fill--safe" style="width: 10%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alert Cards -->
+          <!-- Pedestrian Density -->
+          <div class="sm-alert sm-alert--pedestrian sm-glass">
+            <div class="sm-alert__icon-box sm-alert__icon-box--pedestrian">
+              <span class="material-symbols-outlined">directions_walk</span>
+            </div>
+            <div>
+              <div class="sm-alert__title sm-alert__title--default">Pedestrian Density</div>
+              <div class="sm-alert__sub sm-alert__sub--tertiary">Unsafe crossing detected @ North</div>
+            </div>
+          </div>
+
+          <!-- Emergency Conflict -->
+          <div class="sm-alert sm-alert--emergency sm-glass sm-neon-glow--red">
+            <div class="sm-alert__icon-box sm-alert__icon-box--emergency">
+              <span class="material-symbols-outlined">emergency</span>
+            </div>
+            <div>
+              <div class="sm-alert__title sm-alert__title--error">Emergency Conflict</div>
+              <div class="sm-alert__sub sm-alert__sub--default">Route obstruction risk: <strong style="color: var(--sm-error); font-weight: 700;">HIGH</strong></div>
+            </div>
+          </div>
+
+          <!-- Live Detections -->
+          <div class="sm-detections sm-glass">
+            <div class="sm-detections__header">
+              <span class="sm-detections__title">Live Detections</span>
+              <span class="sm-detections__count">08 Violations</span>
+            </div>
+            <div class="sm-detections__body">
+              <div class="sm-detection-item">
+                <div class="sm-detection-item__info">
+                  <span class="material-symbols-outlined" style="color: var(--sm-tertiary-container);">pedal_bike</span>
+                  <span class="sm-detection-item__text">Bike crossed red @ North Arm</span>
+                </div>
+                <span class="sm-detection-item__time">12s ago</span>
+              </div>
+              <div class="sm-detection-item">
+                <div class="sm-detection-item__info">
+                  <span class="material-symbols-outlined" style="color: var(--sm-error);">speed</span>
+                  <span class="sm-detection-item__text">Car overspeed detected (84 km/h)</span>
+                </div>
+                <span class="sm-detection-item__time">2m ago</span>
+              </div>
+              <div class="sm-detection-item">
+                <div class="sm-detection-item__info">
+                  <span class="material-symbols-outlined" style="color: var(--sm-primary);">info</span>
+                  <span class="sm-detection-item__text sm-detection-item__text--primary">3 near-miss events detected in last cycle</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Safety Optimization -->
+          <div class="sm-ai-card sm-glass">
+            <div class="sm-ai-card__glow"></div>
+            <div class="sm-ai-card__header">
+              <span class="material-symbols-outlined" style="color: var(--sm-primary); font-size: 0.875rem; font-variation-settings: 'FILL' 1;">psychology</span>
+              <span class="sm-ai-card__badge">AI Safety Optimization</span>
+            </div>
+            <p class="sm-ai-card__quote">
+              "Reduce green time for East arm by 12 seconds to avoid conflict with identified pedestrian surge from metro exit."
+            </p>
+            <div class="sm-ai-card__footer">
+              <div class="sm-ai-card__confidence">
+                <span class="sm-ai-card__confidence-label">Confidence</span>
+                <span class="sm-ai-card__confidence-val">98.4%</span>
+              </div>
+              <button class="sm-ai-card__btn" id="smExecuteBtn">Execute Action</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating FAB -->
+    <button class="sm-fab" id="smFab">
+      <span class="material-symbols-outlined">emergency_share</span>
+    </button>
+  </main>
+
+  <script type="module" src="/scripts/guard.js"></script>
+  <script type="module" src="/scripts/main.js"></script>
+</body>
+</html>

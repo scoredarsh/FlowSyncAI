@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowSync AI | Traffic Analytics</title>
+  <meta name="description" content="FlowSync AI — Traffic Performance Dashboard. Real-time AI behavioral insights for Downtown Junction 42A." />
+  <link rel="stylesheet" href="/styles/index.css" />
+  <link rel="stylesheet" href="/styles/analytics.css" />
+</head>
+
+<body>
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__logo">
+      <h1>FlowSync AI</h1>
+      <p>Cinematic Intelligence</p>
+    </div>
+
+    <nav class="sidebar__nav">
+      <a href="/index.html" class="sidebar__link" data-nav="command">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Command Center</span>
+      </a>
+      <a href="/junction-sim.html" class="sidebar__link" data-nav="junction">
+        <span class="material-symbols-outlined">simulation</span>
+        <span>Junction Sim</span>
+      </a>
+      <a href="/vehicle-detection.html" class="sidebar__link" data-nav="detection">
+        <span class="material-symbols-outlined">detection_and_zone</span>
+        <span>Vehicle Detection</span>
+      </a>
+      <a href="/safety-matrix.html" class="sidebar__link" data-nav="safety">
+        <span class="material-symbols-outlined">security</span>
+        <span>Safety Matrix</span>
+      </a>
+      <a href="/emergency-response.html" class="sidebar__link sidebar__link--emergency" data-nav="emergency">
+        <span class="material-symbols-outlined">emergency</span>
+        <span>Emergency Response</span>
+      </a>
+      <a href="/analytics.html" class="sidebar__link sidebar__link--active" data-nav="analytics">
+        <span class="material-symbols-outlined">insights</span>
+        <span>Analytics</span>
+      </a>
+    </nav>
+
+    <div class="sidebar__bottom">
+      <a href="/settings.html" class="sidebar__link" data-nav="settings">
+        <span class="material-symbols-outlined">settings</span>
+        <span>Settings</span>
+      </a>
+      <a href="#" class="sidebar__link" id="logoutBtn">
+        <span class="material-symbols-outlined">logout</span>
+        <span>Sign Out</span>
+      </a>
+
+    </div>
+  </aside>
+
+  <!-- ═══ TOP NAVBAR ═══ -->
+  <header class="navbar">
+    <div class="navbar__search">
+      <span class="material-symbols-outlined">search</span>
+      <input type="text" placeholder="Search junctions, metrics, arms..." />
+    </div>
+
+    <div class="navbar__actions">
+      <button class="navbar__notif-btn" id="notifBtn">
+        <span class="material-symbols-outlined">notifications</span>
+        <span class="navbar__notif-dot"></span>
+      </button>
+
+      <div class="navbar__sync-badge">
+        <span class="material-symbols-outlined">sync</span>
+        <span>Live Sync</span>
+      </div>
+
+      <div class="navbar__user">
+        <div class="navbar__user-info">
+          <p class="name">Commander Shepard</p>
+          <p class="role">Central District Authority</p>
+        </div>
+        <img
+          class="navbar__avatar"
+          alt="User Profile"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFFtlV9oycZ3wJhc7_Z3_oM8yOfJvB0ykfPElqm-F9oqtOfB01Mly_9QgdBXzwLfE4u31FBYyIFSLb7vldPHh8XNxP8N9iscv4eYjkrhSPfNJ47XaIRY2l3519nVeYuPYvturqN7h5YUuJSXukAycPBaRwNfcF1YE5ZxrONkUT8XP_xobA2pRqezJmCbr1zSGAJqH89tWGsuzy3fkdvPclbGu-_Lf4dKJgysojnWPj6NNb2pdDuK2_udrFh2t00jfKsFOqL4-xLJ6C"
+        />
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="main-content main-content--analytics">
+
+    <!-- 1. PAGE HEADER -->
+    <div class="an-header">
+      <div>
+        <span class="an-header__eyebrow">System Analytics</span>
+        <h1 class="an-header__title">Traffic Performance Dashboard</h1>
+        <p class="an-header__subtitle">Real-time AI behavioral insights for Downtown Junction 42A</p>
+      </div>
+      <div class="an-header__pill">
+        <span class="an-header__pill-dot"></span>
+        AI Active Optimization
+      </div>
+    </div>
+
+    <!-- 2. KPI METRIC CARDS -->
+    <section class="an-kpi-grid">
+      <!-- Avg Waiting Time -->
+      <div class="an-glass an-kpi">
+        <p class="an-kpi__label">Avg Waiting Time</p>
+        <div class="an-kpi__row">
+          <h3 class="an-kpi__value">42<span class="an-kpi__unit">sec</span></h3>
+          <span class="an-kpi__trend an-kpi__trend--positive">
+            <span class="material-symbols-outlined">arrow_downward</span> 12%
+          </span>
+        </div>
+        <div class="an-kpi__bar"><div class="an-kpi__bar-fill" style="width: 40%"></div></div>
+      </div>
+      <!-- Queue Length -->
+      <div class="an-glass an-kpi">
+        <p class="an-kpi__label">Queue Length</p>
+        <div class="an-kpi__row">
+          <h3 class="an-kpi__value">18<span class="an-kpi__unit">veh</span></h3>
+          <span class="an-kpi__trend an-kpi__trend--positive">
+            <span class="material-symbols-outlined">arrow_downward</span> 8%
+          </span>
+        </div>
+        <div class="an-kpi__bar"><div class="an-kpi__bar-fill" style="width: 25%"></div></div>
+      </div>
+      <!-- Throughput -->
+      <div class="an-glass an-kpi">
+        <p class="an-kpi__label">Throughput</p>
+        <div class="an-kpi__row">
+          <h3 class="an-kpi__value">1,240<span class="an-kpi__unit">v/h</span></h3>
+          <span class="an-kpi__trend an-kpi__trend--positive">
+            <span class="material-symbols-outlined">arrow_upward</span> 15%
+          </span>
+        </div>
+        <div class="an-kpi__bar"><div class="an-kpi__bar-fill" style="width: 78%"></div></div>
+      </div>
+      <!-- Signal Efficiency -->
+      <div class="an-glass an-kpi">
+        <p class="an-kpi__label">Signal Efficiency</p>
+        <div class="an-kpi__row">
+          <h3 class="an-kpi__value">94<span class="an-kpi__unit">%</span></h3>
+          <span class="an-kpi__trend an-kpi__trend--positive">
+            <span class="material-symbols-outlined">arrow_upward</span> 3%
+          </span>
+        </div>
+        <div class="an-kpi__bar"><div class="an-kpi__bar-fill" style="width: 94%"></div></div>
+      </div>
+      <!-- Congestion Reduction -->
+      <div class="an-glass an-kpi">
+        <p class="an-kpi__label">Congestion Red.</p>
+        <div class="an-kpi__row">
+          <h3 class="an-kpi__value">23<span class="an-kpi__unit">%</span></h3>
+          <span class="an-kpi__trend an-kpi__trend--positive">
+            <span class="material-symbols-outlined">arrow_downward</span> 5%
+          </span>
+        </div>
+        <div class="an-kpi__bar"><div class="an-kpi__bar-fill" style="width: 60%"></div></div>
+      </div>
+      <!-- Safety Score -->
+      <div class="an-glass an-kpi" style="border-color: rgba(79, 219, 200, 0.2);">
+        <p class="an-kpi__label">Safety Score</p>
+        <div class="an-kpi__row">
+          <h3 class="an-kpi__value an-kpi__value--accent">A+<span class="an-kpi__unit" style="color: var(--on-surface);">8.9</span></h3>
+          <span class="an-kpi__trend an-kpi__trend--positive">
+            <span class="material-symbols-outlined">bolt</span> Purity
+          </span>
+        </div>
+        <div class="an-kpi__bar"><div class="an-kpi__bar-fill" style="width: 89%"></div></div>
+      </div>
+    </section>
+
+    <!-- 3. AI vs Traditional + 4. Vehicle Load Trend -->
+    <section class="an-middle-grid">
+      <!-- AI vs Traditional -->
+      <div class="an-glass an-glass--no-hover" style="display:flex;flex-direction:column;height:100%;">
+        <div class="an-comparison__header">
+          <h4 class="an-comparison__title">AI vs Traditional</h4>
+          <span class="material-symbols-outlined an-comparison__icon">compare_arrows</span>
+        </div>
+        <div style="flex:1;">
+          <!-- Avg Delay -->
+          <div class="an-comparison__metric">
+            <div class="an-comparison__metric-header">
+              <span>Avg Delay (s)</span>
+              <span class="an-comparison__metric-value">AI Flow - 28s</span>
+            </div>
+            <div class="an-comparison__bars">
+              <div class="an-bar-track an-bar-track--ai"><div class="an-bar-fill--ai an-glow" style="width: 45%"></div></div>
+              <div class="an-bar-track an-bar-track--traditional" style="width:85%;"><div class="an-bar-fill--trad" style="width: 100%"></div></div>
+            </div>
+          </div>
+          <!-- Queue Depth -->
+          <div class="an-comparison__metric">
+            <div class="an-comparison__metric-header">
+              <span>Queue Depth</span>
+              <span class="an-comparison__metric-value">AI Flow - 12v</span>
+            </div>
+            <div class="an-comparison__bars">
+              <div class="an-bar-track an-bar-track--ai"><div class="an-bar-fill--ai an-glow" style="width: 30%"></div></div>
+              <div class="an-bar-track an-bar-track--traditional" style="width:70%;"><div class="an-bar-fill--trad" style="width: 100%"></div></div>
+            </div>
+          </div>
+          <!-- Throughput -->
+          <div class="an-comparison__metric">
+            <div class="an-comparison__metric-header">
+              <span>Throughput</span>
+              <span class="an-comparison__metric-value">AI Flow +24%</span>
+            </div>
+            <div class="an-comparison__bars">
+              <div class="an-bar-track an-bar-track--ai"><div class="an-bar-fill--ai an-glow" style="width: 92%"></div></div>
+              <div class="an-bar-track an-bar-track--traditional" style="width:75%;"><div class="an-bar-fill--trad" style="width: 100%"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="an-insight-box">
+          <p class="an-insight-box__text">AI reduces fuel wastage by 32% compared to fixed-time signals.</p>
+        </div>
+      </div>
+
+      <!-- Vehicle Load Trend -->
+      <div class="an-glass an-glass--no-hover" style="position:relative;overflow:hidden;height:100%;">
+        <div class="an-trend__header">
+          <div>
+            <h4 class="an-trend__title">Vehicle Load Trend</h4>
+            <p class="an-trend__subtitle">24-hour comparative flow analysis</p>
+          </div>
+          <div class="an-trend__legend">
+            <span class="an-legend-item an-legend-item--live"><span class="an-legend-dot an-legend-dot--live"></span> Live Flow</span>
+            <span class="an-legend-item an-legend-item--hist"><span class="an-legend-dot an-legend-dot--hist"></span> Historical</span>
+          </div>
+        </div>
+        <div class="an-chart-container">
+          <svg preserveAspectRatio="none" viewBox="0 0 100 40">
+            <defs>
+              <linearGradient id="anChartGrad" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#4FDBC8" stop-opacity="0.3"></stop>
+                <stop offset="100%" stop-color="#4FDBC8" stop-opacity="0"></stop>
+              </linearGradient>
+            </defs>
+            <!-- Area fill -->
+            <path d="M0,35 Q10,30 20,38 T40,20 T60,25 T80,10 T100,28 L100,40 L0,40 Z" fill="url(#anChartGrad)"></path>
+            <!-- Live line -->
+            <path d="M0,35 Q10,30 20,38 T40,20 T60,25 T80,10 T100,28" fill="none" stroke="#4FDBC8" stroke-width="0.8" style="filter: drop-shadow(0 0 5px #4FDBC8);"></path>
+            <!-- Historical dashed line -->
+            <path d="M0,38 Q10,35 20,39 T40,28 T60,32 T80,25 T100,35" fill="none" stroke="#45484f" stroke-dasharray="2" stroke-width="0.5"></path>
+          </svg>
+          <div class="an-chart-hover">
+            <div class="an-chart-tooltip">
+              <p class="an-chart-tooltip__label">14:20 PEAK</p>
+              <p class="an-chart-tooltip__value">1,842 veh/h</p>
+            </div>
+          </div>
+        </div>
+        <div class="an-chart-x-axis">
+          <span>00:00</span><span>04:00</span><span>08:00</span><span>12:00</span><span>16:00</span><span>20:00</span><span>23:59</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Vehicle Class + 6. Arm Health + 7. AI Prediction -->
+    <section class="an-bottom-grid">
+      <!-- Vehicle Class Donut -->
+      <div class="an-glass an-glass--no-hover">
+        <h4 class="an-comparison__title" style="margin-bottom:1.5rem;">Vehicle Class</h4>
+        <div class="an-donut-wrapper">
+          <svg class="an-donut-svg" width="128" height="128">
+            <circle cx="64" cy="64" r="54" fill="none" stroke="var(--surface-container-high)" stroke-width="12"></circle>
+            <!-- Cars 64% -->
+            <circle cx="64" cy="64" r="54" fill="none" stroke="var(--tertiary)" stroke-width="12"
+              stroke-dasharray="339" stroke-dashoffset="122"></circle>
+            <!-- Bikes 12% -->
+            <circle cx="64" cy="64" r="54" fill="none" stroke="var(--error)" stroke-width="12"
+              stroke-dasharray="339" stroke-dashoffset="298"></circle>
+          </svg>
+          <div class="an-donut-center">
+            <span class="an-donut-center__label">Total</span>
+            <span class="an-donut-center__value">12.4k</span>
+          </div>
+        </div>
+        <div class="an-class-legend">
+          <div class="an-class-legend__item">
+            <span class="an-class-legend__dot" style="background-color:var(--tertiary);"></span>
+            <span class="an-class-legend__text">Cars (64%)</span>
+          </div>
+          <div class="an-class-legend__item">
+            <span class="an-class-legend__dot" style="background-color:var(--error);"></span>
+            <span class="an-class-legend__text">Bikes (12%)</span>
+          </div>
+          <div class="an-class-legend__item">
+            <span class="an-class-legend__dot" style="background-color:var(--outline);"></span>
+            <span class="an-class-legend__text">Buses (8%)</span>
+          </div>
+          <div class="an-class-legend__item">
+            <span class="an-class-legend__dot" style="background-color:var(--primary);"></span>
+            <span class="an-class-legend__text">Trucks (4%)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arm Specific Health -->
+      <div class="an-glass an-glass--no-hover">
+        <div class="an-arm-header">
+          <h4 class="an-arm-header__title">Arm Specific Health</h4>
+          <span class="an-arm-header__badge">Live Load Matrix</span>
+        </div>
+        <div class="an-arm-grid">
+          <!-- North Arm -->
+          <div class="an-arm-card">
+            <div>
+              <p class="an-arm-card__label">North Arm</p>
+              <h5 class="an-arm-card__status">Optimal</h5>
+            </div>
+            <div class="an-arm-indicator an-arm-indicator--optimal">
+              <div class="an-arm-dot an-arm-dot--optimal"></div>
+            </div>
+          </div>
+          <!-- East Arm -->
+          <div class="an-arm-card an-arm-card--congested">
+            <div>
+              <p class="an-arm-card__label">East Arm</p>
+              <h5 class="an-arm-card__status an-arm-card__status--congested">Congested</h5>
+            </div>
+            <div class="an-arm-indicator an-arm-indicator--congested">
+              <div class="an-arm-dot an-arm-dot--congested"></div>
+            </div>
+          </div>
+          <!-- South Arm -->
+          <div class="an-arm-card">
+            <div>
+              <p class="an-arm-card__label">South Arm</p>
+              <h5 class="an-arm-card__status an-arm-card__status--moderate">Moderate</h5>
+            </div>
+            <div class="an-arm-indicator an-arm-indicator--moderate">
+              <div class="an-arm-dot an-arm-dot--moderate"></div>
+            </div>
+          </div>
+          <!-- West Arm -->
+          <div class="an-arm-card">
+            <div>
+              <p class="an-arm-card__label">West Arm</p>
+              <h5 class="an-arm-card__status">Optimal</h5>
+            </div>
+            <div class="an-arm-indicator an-arm-indicator--optimal">
+              <div class="an-arm-dot an-arm-dot--optimal"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Prediction -->
+      <div class="an-glass an-glass--no-hover an-prediction">
+        <div class="an-prediction__glow"></div>
+        <div class="an-prediction__header">
+          <span class="material-symbols-outlined an-prediction__icon">auto_awesome</span>
+          <h4 class="an-prediction__title">AI Prediction</h4>
+        </div>
+        <p class="an-prediction__forecast">Forecast: Next 30 Mins</p>
+        <div class="an-prediction__rows">
+          <div class="an-prediction__row">
+            <span class="an-prediction__row-label">Predicted Load</span>
+            <span class="an-prediction__row-value an-prediction__row-value--positive">+14%</span>
+          </div>
+          <div class="an-prediction__row">
+            <span class="an-prediction__row-label">Bottleneck Risk</span>
+            <span class="an-prediction__row-value an-prediction__row-value--warning">LOW</span>
+          </div>
+          <div class="an-prediction__divider">
+            <p class="an-prediction__note">System recommending <strong>Extended Green (E-Arm)</strong> by 12s starting at 18:45.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. AI EXECUTIVE SUMMARY + EXPORT CONTROLS -->
+    <section class="an-glass an-glass--no-hover an-summary">
+      <div class="an-summary__content">
+        <div class="an-summary__left">
+          <div class="an-summary__icon-ring">
+            <span class="material-symbols-outlined">insights</span>
+          </div>
+          <div>
+            <h4 class="an-summary__title">Executive AI Intelligence Summary</h4>
+            <p class="an-summary__body">
+              Traffic flow efficiency has <strong>improved by 23%</strong> across all arms in the last 24h cycle.
+              The East arm remains the main bottleneck during PM peak hours (17:00–19:00),
+              recommended further dynamic phase adjustment.
+            </p>
+          </div>
+        </div>
+        <div class="an-summary__actions">
+          <button class="an-summary__btn">
+            <span class="material-symbols-outlined">picture_as_pdf</span> PDF Report
+          </button>
+          <button class="an-summary__btn">
+            <span class="material-symbols-outlined">csv</span> CSV Data
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p class="footer__version">FlowSync AI // Tactical Node Network v4.0.2</p>
+      <div class="footer__links">
+        <span class="footer__link">PDF Export</span>
+        <span class="footer__link">CSV Export</span>
+        <span class="footer__link" style="color: var(--tertiary); font-weight: 700;">AI Summary</span>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module" src="/scripts/guard.js"></script>
+  <script type="module" src="/scripts/main.js"></script>
+</body>
+</html>

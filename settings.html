@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowSync AI | Settings</title>
+  <link rel="stylesheet" href="/styles/index.css" />
+  <link rel="stylesheet" href="/styles/settings.css" />
+</head>
+
+<body>
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__logo">
+      <h1>FlowSync AI</h1>
+      <p>Cinematic Intelligence</p>
+    </div>
+
+    <nav class="sidebar__nav">
+      <a href="/index.html" class="sidebar__link" data-nav="command">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Command Center</span>
+      </a>
+      <a href="/junction-sim.html" class="sidebar__link" data-nav="junction">
+        <span class="material-symbols-outlined">simulation</span>
+        <span>Junction Sim</span>
+      </a>
+      <a href="/vehicle-detection.html" class="sidebar__link" data-nav="detection">
+        <span class="material-symbols-outlined">detection_and_zone</span>
+        <span>Vehicle Detection</span>
+      </a>
+      <a href="/safety-matrix.html" class="sidebar__link" data-nav="safety">
+        <span class="material-symbols-outlined">security</span>
+        <span>Safety Matrix</span>
+      </a>
+      <a href="/emergency-response.html" class="sidebar__link sidebar__link--emergency" data-nav="emergency">
+        <span class="material-symbols-outlined">emergency</span>
+        <span>Emergency Response</span>
+      </a>
+      <a href="/analytics.html" class="sidebar__link" data-nav="analytics">
+        <span class="material-symbols-outlined">insights</span>
+        <span>Analytics</span>
+      </a>
+    </nav>
+
+    <div class="sidebar__bottom">
+      <a href="/settings.html" class="sidebar__link sidebar__link--active" data-nav="settings">
+        <span class="material-symbols-outlined">settings</span>
+        <span>Settings</span>
+      </a>
+      <a href="#" class="sidebar__link" id="logoutBtn">
+        <span class="material-symbols-outlined">logout</span>
+        <span>Sign Out</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ═══ TOP NAVBAR ═══ -->
+  <header class="navbar">
+    <div class="navbar__search">
+      <span class="material-symbols-outlined">search</span>
+      <input type="text" placeholder="Search settings..." />
+    </div>
+
+    <div class="navbar__actions">
+      <button class="navbar__notif-btn" id="notifBtn">
+        <span class="material-symbols-outlined">notifications</span>
+        <span class="navbar__notif-dot"></span>
+      </button>
+      <div class="navbar__sync-badge">
+        <span class="material-symbols-outlined">sync</span>
+        <span>Live Sync</span>
+      </div>
+      <div class="navbar__user">
+        <div class="navbar__user-info">
+          <p class="name">Loading...</p>
+          <p class="role">Operator</p>
+        </div>
+        <img class="navbar__avatar" alt="User Profile" src="" style="display:none;" />
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="main-content">
+    <div class="set-container">
+      
+      <div class="set-header">
+        <h1 class="set-header__title">Account Settings</h1>
+        <p class="set-header__subtitle">Manage your operator profile and system preferences</p>
+      </div>
+
+      <div class="set-panel">
+        <div class="set-panel-title">
+          <span class="material-symbols-outlined">person</span>
+          Operator Profile
+        </div>
+
+        <div class="set-profile-top">
+          <div class="set-avatar-wrap" id="settingsAvatarWrap">
+            <!-- Initials or Image injected here by JS -->
+          </div>
+          <div class="set-profile-actions">
+            <h2 class="set-user-name" id="displayProfileName">Loading...</h2>
+            <p class="set-user-role" id="displayProfileRole">Operator</p>
+          </div>
+        </div>
+
+        <form class="set-form" id="settingsForm">
+          <div class="set-row">
+            <div class="set-field">
+              <label class="set-label" for="inputName">Full Name</label>
+              <input class="set-input" id="inputName" type="text" required />
+            </div>
+            <div class="set-field">
+              <label class="set-label" for="inputRole">Operation Role</label>
+              <input class="set-input" id="inputRole" type="text" />
+            </div>
+          </div>
+
+          <div class="set-field">
+            <label class="set-label" for="inputEmail">Email Address (Read-Only)</label>
+            <input class="set-input" id="inputEmail" type="email" disabled />
+          </div>
+
+          <div class="set-field">
+            <label class="set-label" for="inputAvatarUrl">Avatar Image URL (Optional)</label>
+            <input class="set-input" id="inputAvatarUrl" type="url" placeholder="https://..." />
+          </div>
+
+          <div class="set-actions">
+            <button class="set-btn set-btn--primary" id="saveProfileBtn" type="submit">Save Changes</button>
+          </div>
+
+          <div class="set-message" id="settingsMsg"></div>
+        </form>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script type="module" src="/scripts/guard.js"></script>
+  <script type="module" src="/scripts/main.js"></script>
+  
+  <script type="module">
+    import { getSession, getProfile, updateProfile } from '/scripts/auth.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const session = await getSession();
+      if (!session) return; // Guard will handle redirect
+
+      const user = session.user;
+      let profile = null;
+
+      try {
+        profile = await getProfile(user.id);
+      } catch (e) {
+        console.warn('Profile not found, generating empty.');
+      }
+
+      // Populate Form
+      const fullName = profile?.full_name || user.user_metadata?.full_name || '';
+      const role = profile?.role || 'Operator';
+      const avatarUrl = profile?.avatar_url || user.user_metadata?.avatar_url || '';
+
+      document.getElementById('inputName').value = fullName;
+      document.getElementById('inputRole').value = role;
+      document.getElementById('inputEmail').value = user.email;
+      document.getElementById('inputAvatarUrl').value = avatarUrl;
+      
+      // Populate visual headers
+      document.getElementById('displayProfileName').textContent = fullName || user.email;
+      document.getElementById('displayProfileRole').textContent = role;
+
+      const avatarWrap = document.getElementById('settingsAvatarWrap');
+      if (avatarUrl) {
+        avatarWrap.innerHTML = `<img src="${avatarUrl}" alt="Avatar" />`;
+      } else {
+        const initials = fullName ? fullName.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase() : 'OP';
+        avatarWrap.textContent = initials;
+      }
+      
+      // Form Submission
+      const form = document.getElementById('settingsForm');
+      const msg = document.getElementById('settingsMsg');
+      const btn = document.getElementById('saveProfileBtn');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.textContent = 'Saving...';
+        msg.className = 'set-message';
+
+        const n = document.getElementById('inputName').value.trim();
+        const r = document.getElementById('inputRole').value.trim();
+        const a = document.getElementById('inputAvatarUrl').value.trim();
+
+        try {
+          await updateProfile(user.id, {
+            full_name: n,
+            role: r,
+            avatar_url: a
+          });
+          
+          msg.textContent = 'Profile updated successfully. Refresh to see navbar changes.';
+          msg.className = 'set-message set-message--success';
+          
+          // Update local visual headers
+          document.getElementById('displayProfileName').textContent = n;
+          document.getElementById('displayProfileRole').textContent = r;
+          if (a) {
+            avatarWrap.innerHTML = `<img src="${a}" alt="Avatar" />`;
+          } else {
+            const initials = n ? n.split(' ').map(x=>x[0]).join('').substring(0,2).toUpperCase() : 'OP';
+            avatarWrap.innerHTML = '';
+            avatarWrap.textContent = initials;
+          }
+
+        } catch (err) {
+          msg.textContent = err.message || 'Error saving profile.';
+          msg.className = 'set-message set-message--error';
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Save Changes';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

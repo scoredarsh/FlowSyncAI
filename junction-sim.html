@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowSync AI | Junction Sim: Node 402-B</title>
+  <meta name="description" content="Junction Simulation and Real-time Neural Traffic Mapping." />
+  <link rel="stylesheet" href="/styles/index.css" />
+</head>
+
+<body>
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__logo">
+      <h1>FlowSync AI</h1>
+      <p>Cinematic Intelligence</p>
+    </div>
+
+    <nav class="sidebar__nav">
+      <a href="/index.html" class="sidebar__link" data-nav="command">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Command Center</span>
+      </a>
+      <!-- Active class moved to Junction Sim -->
+      <a href="/junction-sim.html" class="sidebar__link sidebar__link--active" data-nav="junction">
+        <span class="material-symbols-outlined">simulation</span>
+        <span>Junction Sim</span>
+      </a>
+      <a href="/vehicle-detection.html" class="sidebar__link" data-nav="detection">
+        <span class="material-symbols-outlined">detection_and_zone</span>
+        <span>Vehicle Detection</span>
+      </a>
+      <a href="/safety-matrix.html" class="sidebar__link" data-nav="safety">
+        <span class="material-symbols-outlined">security</span>
+        <span>Safety Matrix</span>
+      </a>
+      <a href="/emergency-response.html" class="sidebar__link sidebar__link--emergency" data-nav="emergency">
+        <span class="material-symbols-outlined">emergency</span>
+        <span>Emergency Response</span>
+      </a>
+      <a href="/analytics.html" class="sidebar__link" data-nav="analytics">
+        <span class="material-symbols-outlined">insights</span>
+        <span>Analytics</span>
+      </a>
+    </nav>
+
+    <div class="sidebar__bottom">
+      <a href="/settings.html" class="sidebar__link" data-nav="settings">
+        <span class="material-symbols-outlined">settings</span>
+        <span>Settings</span>
+      </a>
+      <a href="#" class="sidebar__link" id="logoutBtn">
+        <span class="material-symbols-outlined">logout</span>
+        <span>Sign Out</span>
+      </a>
+
+    </div>
+  </aside>
+
+  <!-- ═══ TOP NAVBAR ═══ -->
+  <header class="navbar">
+    <div class="navbar__search">
+      <span class="material-symbols-outlined">search</span>
+      <input type="text" placeholder="Search Node, Vehicle, or Incident..." />
+    </div>
+
+    <div class="navbar__actions">
+      <button class="navbar__notif-btn" id="notifBtn">
+        <span class="material-symbols-outlined">notifications</span>
+        <span class="navbar__notif-dot"></span>
+      </button>
+
+      <div class="navbar__sync-badge">
+        <span class="material-symbols-outlined">sync</span>
+        <span>Live Sync</span>
+      </div>
+
+      <div class="navbar__user">
+        <div class="navbar__user-info">
+          <p class="name">Commander Shepard</p>
+          <p class="role">Central District Authority</p>
+        </div>
+        <img
+          class="navbar__avatar"
+          alt="User Profile"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFFtlV9oycZ3wJhc7_Z3_oM8yOfJvB0ykfPElqm-F9oqtOfB01Mly_9QgdBXzwLfE4u31FBYyIFSLb7vldPHh8XNxP8N9iscv4eYjkrhSPfNJ47XaIRY2l3519nVeYuPYvturqN7h5YUuJSXukAycPBaRwNfcF1YE5ZxrONkUT8XP_xobA2pRqezJmCbr1zSGAJqH89tWGsuzy3fkdvPclbGu-_Lf4dKJgysojnWPj6NNb2pdDuK2_udrFh2t00jfKsFOqL4-xLJ6C"
+        />
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="jsim-layout">
+
+    <!-- TOP KPI ROW (Requested by User) -->
+    <section class="stats-row" style="margin: 0 1.5rem 1.5rem 1.5rem;">
+      <div class="stat-card">
+        <div class="stat-card__glow" style="background: rgba(114, 220, 255, 0.1);"></div>
+        <p class="stat-card__label">Congestion Index</p>
+        <div class="stat-card__row">
+          <h3 class="stat-card__value" id="jsimCongestion">24<span class="unit text-jsim-primary">%</span></h3>
+          <span class="stat-card__badge bg-jsim-primary text-jsim-on-primary-container" style="background-color: rgba(114, 220, 255, 0.2)" id="jsimCongestionBadge">-12% vs last hr</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <p class="stat-card__label">Avg Signal Delay</p>
+        <div class="stat-card__row">
+          <h3 class="stat-card__value" id="jsimDelay">18<span class="unit unit--muted">s</span></h3>
+          <span class="material-symbols-outlined stat-card__icon text-jsim-primary">timer</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <p class="stat-card__label">Vehicle Throughput</p>
+        <div class="stat-card__row">
+          <h3 class="stat-card__value" id="jsimThroughput">14.2<span class="unit unit--muted">k</span></h3>
+          <span class="stat-card__badge bg-jsim-primary text-jsim-on-primary-container" style="background-color: rgba(114, 220, 255, 0.2)" id="jsimThroughputBadge">+4.2%</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <p class="stat-card__label">Efficiency Score</p>
+        <div class="stat-card__row">
+          <h3 class="stat-card__value" id="jsimEfficiency">92<span class="unit text-jsim-secondary">/100</span></h3>
+          <div class="stat-card__progress">
+            <div class="stat-card__progress-fill bg-jsim-secondary" id="jsimEfficiencyBar" style="width: 92%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <p class="stat-card__label">Active Violations</p>
+        <div class="stat-card__row">
+          <h3 class="stat-card__value text-jsim-error" id="jsimViolations">08</h3>
+          <span class="material-symbols-outlined text-jsim-error-container">warning</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <p class="stat-card__label">Emergency Status</p>
+        <div class="stat-card__status">
+          <div class="stat-card__status-dot bg-jsim-secondary" id="jsimEmergencyDot"></div>
+          <h3 class="stat-card__status-text" id="jsimEmergencyText">NOMINAL</h3>
+        </div>
+        <p class="stat-card__sub" id="jsimEmergencySub">No active medical corridors</p>
+      </div>
+    </section>
+
+    <!-- TOP SECTION: HERO + SIDEBAR -->
+    <div class="jsim-top-content">
+      
+      <!-- HERO SIMULATION PANEL -->
+      <section class="jsim-hero">
+        <div class="jsim-hero__split-container">
+          <!-- Legacy Pane -->
+          <div class="jsim-hero__split-pane jsim-hero__split-pane--legacy">
+            <div class="jsim-hero__overlay-grad jsim-hero__overlay-grad--legacy"></div>
+            <img class="jsim-hero__bg-img jsim-hero__bg-img--legacy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_7g0cQ3zvEUkGTzenoYeQNQazonl-lJ7gobqPvtJ9REEY94Kbn7nhdrMbR2wxKi0XmD22R1ElqI0wrkRtlqqkfcwkaXL9EnBkUDiIhunMOs6JNzHi1enPIKc9zWbhEEzLPMzmD2TMf1RtKy363_qdQF_AVKy2pJ5oBJp9VCalCNtq-_XQnzkNKZzpUOMQ8EOgVvPsoF7I9iPJxIhtxJnG2e6vK4qivLeoe8Gz-Sybk4mV_fZWDR4ruOhKwmRQgr3pJ7LjrhJDPbg" alt="Legacy Traffic Pattern" />
+            <div class="jsim-hero__tag jsim-hero__tag--legacy">
+              <span class="jsim-hero__tag-dot jsim-hero__tag-dot--legacy"></span>
+              Legacy Pattern
+            </div>
+          </div>
+          
+          <!-- AI Optimized Pane -->
+          <div class="jsim-hero__split-pane">
+            <div class="jsim-hero__overlay-grad jsim-hero__overlay-grad--ai"></div>
+            <img class="jsim-hero__bg-img jsim-hero__bg-img--ai" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvHG55cipzr0Gswl7HVNm2EOhOsyLbKsc3KQ_NIRy7oxdjwF6sd9I6Tb6msx2DTevx97aFQYG7gJjrwx2fonvnvCUbiTFFFi5r07bTrl0MoLNFDdxj7OArFWpctq-83rvHv_Vk_OWZ4Vn2pIFAySA4g1aXwOuNIyKD9CsFZGvz72KekiDaGFe1xgzLKZtSUNUnDO2pBzC8QWET3jpSG-1xqE_H2sTdRDTy3_BTZkGqiQSAY9GZRokd35CZUvSvKcRoRSzNlCVN_QE" alt="AI Optimized Traffic" />
+            <div class="jsim-hero__tag jsim-hero__tag--ai">
+              <span class="jsim-hero__tag-dot jsim-hero__tag-dot--ai"></span>
+              AI Optimized
+            </div>
+          </div>
+        </div>
+
+        <!-- Central Overlay -->
+        <div class="jsim-overlay">
+          <div class="jsim-overlay__titles">
+            <h2 class="jsim-overlay__h1">NODE 402-B: JUNCTION SIM</h2>
+            <p class="jsim-overlay__sub">Real-time Neural Traffic Mapping</p>
+          </div>
+
+          <!-- Control Widget -->
+          <div class="jsim-control-widget glass-card-jsim">
+            <div class="jsim-phases">
+              <div class="jsim-phase jsim-phase--active" data-phase="1">
+                <span class="jsim-phase__label">Phase L1</span>
+                <div class="jsim-phase__btn">
+                  <span class="material-symbols-outlined jsim-phase__icon">arrow_upward</span>
+                </div>
+              </div>
+              <div class="jsim-phase" data-phase="2">
+                <span class="jsim-phase__label">Phase L2</span>
+                <div class="jsim-phase__btn">
+                  <span class="material-symbols-outlined jsim-phase__icon">arrow_forward</span>
+                </div>
+              </div>
+              <div class="jsim-phase" data-phase="3">
+                <span class="jsim-phase__label">Phase L3</span>
+                <div class="jsim-phase__btn">
+                  <span class="material-symbols-outlined jsim-phase__icon">turn_left</span>
+                </div>
+              </div>
+              <div class="jsim-phase" data-phase="4">
+                <span class="jsim-phase__label">Phase L4</span>
+                <div class="jsim-phase__btn">
+                  <span class="material-symbols-outlined jsim-phase__icon">u_turn_left</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="jsim-control-divider"></div>
+
+            <div class="jsim-countdown">
+              <p class="jsim-countdown__label">Active Window Remaining</p>
+              <div class="jsim-countdown__val">
+                <span id="jsimCountdown">24</span><span class="jsim-countdown__unit">s</span>
+              </div>
+            </div>
+
+            <div class="jsim-status-box">
+              <div class="jsim-status-badge">
+                <span class="material-symbols-outlined">auto_awesome</span>
+                <span>AI Optimized</span>
+              </div>
+              <p class="jsim-confidence">Confidence: 98.4%</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT SIDEBAR: ANALYTICS -->
+      <aside class="jsim-sidebar">
+        <!-- AI Signal Control -->
+        <div class="jsim-card jsim-card--signal">
+          <div class="jsim-card__header">
+            <h3 class="jsim-card__title">AI Signal Control</h3>
+            <span class="material-symbols-outlined text-jsim-primary glow-primary-sm">psychology</span>
+          </div>
+          <div class="jsim-signal-grid">
+            <div class="jsim-signal-box">
+              <p class="jsim-signal-box__label">Current</p>
+              <p class="jsim-signal-box__val" id="currentPhaseText">Northbound Str.</p>
+            </div>
+            <div class="jsim-signal-box">
+              <p class="jsim-signal-box__label">Suggested</p>
+              <p class="jsim-signal-box__val text-jsim-secondary">+12s Green</p>
+            </div>
+          </div>
+          <div class="jsim-reasoning">
+            <p class="jsim-reasoning__title">AI Reasoning</p>
+            <p class="jsim-reasoning__text">Detecting high density plume approaching from East sector 4. extending current green to prevent gridlock at Node 401.</p>
+          </div>
+        </div>
+
+        <!-- Queue & Density -->
+        <div class="jsim-card">
+          <div class="jsim-card__header">
+            <h3 class="jsim-card__title">Queue &amp; Density</h3>
+            <span class="badge badge--muted">LIVE METRICS</span>
+          </div>
+          <div class="jsim-queue-list">
+            <div class="jsim-queue-item jsim-queue-item--low" id="jsimQueueNorth">
+              <div class="jsim-queue-item__header">
+                <span class="jsim-queue-item__arm">North Arm</span>
+                <span class="jsim-queue-item__status" id="jsimQueueNorthStatus">Low (12m)</span>
+              </div>
+              <div class="jsim-queue-item__track">
+                <div class="jsim-queue-item__fill" id="jsimQueueNorthFill" style="width: 15%"></div>
+              </div>
+            </div>
+            <div class="jsim-queue-item jsim-queue-item--med" id="jsimQueueSouth">
+              <div class="jsim-queue-item__header">
+                <span class="jsim-queue-item__arm">South Arm</span>
+                <span class="jsim-queue-item__status" id="jsimQueueSouthStatus">Moderate (48m)</span>
+              </div>
+              <div class="jsim-queue-item__track">
+                <div class="jsim-queue-item__fill" id="jsimQueueSouthFill" style="width: 45%"></div>
+              </div>
+            </div>
+            <div class="jsim-queue-item jsim-queue-item--high" id="jsimQueueEast">
+              <div class="jsim-queue-item__header">
+                <span class="jsim-queue-item__arm">East Arm</span>
+                <span class="jsim-queue-item__status" id="jsimQueueEastStatus">High (142m)</span>
+              </div>
+              <div class="jsim-queue-item__track">
+                <div class="jsim-queue-item__fill" id="jsimQueueEastFill" style="width: 85%"></div>
+              </div>
+            </div>
+            <div class="jsim-queue-item jsim-queue-item--low" id="jsimQueueWest">
+              <div class="jsim-queue-item__header">
+                <span class="jsim-queue-item__arm">West Arm</span>
+                <span class="jsim-queue-item__status" id="jsimQueueWestStatus">Optimal (24m)</span>
+              </div>
+              <div class="jsim-queue-item__track">
+                <div class="jsim-queue-item__fill" id="jsimQueueWestFill" style="width: 25%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Predicted Congestion -->
+        <div class="jsim-card jsim-prediction tonal-stacking">
+          <div class="jsim-prediction__glow"></div>
+          <div class="jsim-prediction__alert">
+            <div class="jsim-prediction__icon">
+              <span class="material-symbols-outlined">warning</span>
+            </div>
+            <div>
+              <h3 class="jsim-prediction__alert-title">Predicted Congestion</h3>
+              <p class="jsim-prediction__alert-time">In 5 Minutes: HIGH</p>
+            </div>
+          </div>
+          <div class="jsim-prediction__details">
+            <div class="jsim-prediction__row">
+              <span class="jsim-prediction__row-label">Most Loaded Arm</span>
+              <span class="jsim-prediction__row-val">East (Industrial)</span>
+            </div>
+            <div class="jsim-prediction__row">
+              <span class="jsim-prediction__row-label">Suggested Action</span>
+              <span class="jsim-prediction__row-val jsim-prediction__row-val--primary text-jsim-primary">Pre-emptive Clear</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- BOTTOM PANELS (Secondary) -->
+    <div class="jsim-bottom-panels">
+      
+      <!-- System Delta -->
+      <div class="jsim-bottom-card tonal-stacking">
+        <div class="flex items-start justify-between">
+          <h4 class="jsim-bottom-card__title">System Delta</h4>
+          <span class="material-symbols-outlined text-jsim-secondary text-sm">trending_up</span>
+        </div>
+        <div class="jsim-delta-grid">
+          <div class="jsim-delta-item">
+            <p class="jsim-delta-item__label">Avg Wait Time</p>
+            <div class="jsim-delta-item__val">
+              <span class="jsim-delta-item__number">-42%</span>
+              <span class="material-symbols-outlined text-jsim-secondary text-xs">arrow_downward</span>
+            </div>
+          </div>
+          <div class="jsim-delta-item">
+            <p class="jsim-delta-item__label">Queue Length</p>
+            <div class="jsim-delta-item__val">
+              <span class="jsim-delta-item__number">-38%</span>
+              <span class="material-symbols-outlined text-jsim-secondary text-xs">arrow_downward</span>
+            </div>
+          </div>
+          <div class="jsim-delta-item">
+            <p class="jsim-delta-item__label">Throughput</p>
+            <div class="jsim-delta-item__val">
+              <span class="jsim-delta-item__number">+18%</span>
+              <span class="material-symbols-outlined text-jsim-secondary text-xs">arrow_upward</span>
+            </div>
+          </div>
+          <div class="jsim-delta-item">
+            <p class="jsim-delta-item__label">Conflict Reduction</p>
+            <div class="jsim-delta-item__val">
+              <span class="jsim-delta-item__number">62%</span>
+              <span class="material-symbols-outlined text-jsim-secondary text-xs">verified</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vehicle Mix Profile -->
+      <div class="jsim-bottom-card">
+        <h4 class="jsim-bottom-card__title">Vehicle Mix Profile</h4>
+        <div class="jsim-mix-list">
+          <div class="jsim-mix-item">
+            <span class="material-symbols-outlined jsim-mix-icon">directions_car</span>
+            <div class="jsim-mix-track">
+              <div class="jsim-mix-fill bg-jsim-primary" id="jsimMixCarFill" style="width: 55%"></div>
+            </div>
+            <span class="jsim-mix-val" id="jsimMixCarVal">55%</span>
+          </div>
+          <div class="jsim-mix-item">
+            <span class="material-symbols-outlined jsim-mix-icon">motorcycle</span>
+            <div class="jsim-mix-track">
+              <div class="jsim-mix-fill bg-jsim-tertiary" id="jsimMixAutoFill" style="width: 22%"></div>
+            </div>
+            <span class="jsim-mix-val" id="jsimMixAutoVal">22%</span>
+          </div>
+          <div class="jsim-mix-item">
+            <span class="material-symbols-outlined jsim-mix-icon">directions_bus</span>
+            <div class="jsim-mix-track">
+              <div class="jsim-mix-fill bg-jsim-secondary" id="jsimMixBusFill" style="width: 12%"></div>
+            </div>
+            <span class="jsim-mix-val" id="jsimMixBusVal">12%</span>
+          </div>
+          <div class="jsim-mix-item">
+            <span class="material-symbols-outlined jsim-mix-icon">pedal_bike</span>
+            <div class="jsim-mix-track">
+              <div class="jsim-mix-fill bg-jsim-primary-container" id="jsimMixBikeFill" style="width: 6%"></div>
+            </div>
+            <span class="jsim-mix-val" id="jsimMixBikeVal">6%</span>
+          </div>
+          <div class="jsim-mix-item">
+            <span class="material-symbols-outlined jsim-mix-icon">directions_walk</span>
+            <div class="jsim-mix-track">
+              <div class="jsim-mix-fill bg-jsim-error" id="jsimMixPedFill" style="width: 5%"></div>
+            </div>
+            <span class="jsim-mix-val" id="jsimMixPedVal">5%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scenario Control -->
+      <div class="jsim-bottom-card">
+        <h4 class="jsim-bottom-card__title">Scenario Control</h4>
+        <div class="jsim-scenarios">
+          <div class="jsim-scenario-grid">
+            <div class="jsim-control-group">
+              <label class="jsim-control-label">Traffic Level</label>
+              <select class="jsim-select">
+                <option>Peak Hour</option>
+                <option>Low Flow</option>
+                <option>Extreme</option>
+              </select>
+            </div>
+            <div class="jsim-control-group">
+              <label class="jsim-control-label">Weather</label>
+              <select class="jsim-select">
+                <option>Clear Skies</option>
+                <option>Heavy Rain</option>
+                <option>Fog/Mist</option>
+              </select>
+            </div>
+          </div>
+          <div class="jsim-toggle-row mt-2">
+            <span class="jsim-toggle-label">Emergency Mode</span>
+            <div class="jsim-toggle" id="emergencyToggle">
+              <div class="jsim-toggle__dot"></div>
+            </div>
+          </div>
+          <div class="jsim-toggle-row">
+            <span class="jsim-toggle-label">Pedestrian Load</span>
+            <input type="range" class="jsim-slider" value="50" min="0" max="100" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Incident Injection -->
+      <div class="jsim-bottom-card">
+        <h4 class="jsim-bottom-card__title">Incident Injection</h4>
+        <div class="jsim-incidents">
+          <button class="jsim-incident-btn jsim-incident-btn--error">
+            <span class="material-symbols-outlined jsim-incident-btn__icon">car_crash</span>
+            <div>
+              <p class="jsim-incident-btn__title">Trigger Accident</p>
+              <p class="jsim-incident-btn__sub">Simulate Minor Collision</p>
+            </div>
+          </button>
+          <button class="jsim-incident-btn jsim-incident-btn--primary">
+            <span class="material-symbols-outlined jsim-incident-btn__icon">medical_services</span>
+            <div>
+              <p class="jsim-incident-btn__title">Add Ambulance</p>
+              <p class="jsim-incident-btn__sub">Priority Routing Test</p>
+            </div>
+          </button>
+          <button class="jsim-incident-btn jsim-incident-btn--tertiary">
+            <span class="material-symbols-outlined jsim-incident-btn__icon">groups</span>
+            <div>
+              <p class="jsim-incident-btn__title">Pedestrian Surge</p>
+              <p class="jsim-incident-btn__sub">Event/Exit Scenario</p>
+            </div>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script type="module" src="/scripts/guard.js"></script>
+  <script type="module" src="/scripts/main.js"></script>
+</body>
+</html>

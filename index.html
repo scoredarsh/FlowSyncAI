@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowSync AI | Cinematic Intelligence</title>
+  <meta name="description" content="FlowSync AI — Tactical Node Network for AI-powered traffic and junction optimization. Real-time simulation, vehicle detection, and emergency corridor management." />
+  <link rel="stylesheet" href="/styles/index.css" />
+</head>
+
+<body>
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__logo">
+      <h1>FlowSync AI</h1>
+      <p>Cinematic Intelligence</p>
+    </div>
+
+    <nav class="sidebar__nav">
+      <a href="/index.html" class="sidebar__link sidebar__link--active" data-nav="command">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Command Center</span>
+      </a>
+      <a href="/junction-sim.html" class="sidebar__link" data-nav="junction">
+        <span class="material-symbols-outlined">simulation</span>
+        <span>Junction Sim</span>
+      </a>
+      <a href="/vehicle-detection.html" class="sidebar__link" data-nav="detection">
+        <span class="material-symbols-outlined">detection_and_zone</span>
+        <span>Vehicle Detection</span>
+      </a>
+      <a href="/safety-matrix.html" class="sidebar__link" data-nav="safety">
+        <span class="material-symbols-outlined">security</span>
+        <span>Safety Matrix</span>
+      </a>
+      <a href="/emergency-response.html" class="sidebar__link sidebar__link--emergency" data-nav="emergency">
+        <span class="material-symbols-outlined">emergency</span>
+        <span>Emergency Response</span>
+      </a>
+      <a href="/analytics.html" class="sidebar__link" data-nav="analytics">
+        <span class="material-symbols-outlined">insights</span>
+        <span>Analytics</span>
+      </a>
+    </nav>
+
+    <div class="sidebar__bottom">
+      <a href="/settings.html" class="sidebar__link" data-nav="settings">
+        <span class="material-symbols-outlined">settings</span>
+        <span>Settings</span>
+      </a>
+      <a href="#" class="sidebar__link" id="logoutBtn">
+        <span class="material-symbols-outlined">logout</span>
+        <span>Sign Out</span>
+      </a>
+
+    </div>
+  </aside>
+
+  <!-- ═══ TOP NAVBAR ═══ -->
+  <header class="navbar">
+    <div class="navbar__search">
+      <span class="material-symbols-outlined">search</span>
+      <input type="text" placeholder="Search node, junction or vehicle ID..." />
+    </div>
+
+    <div class="navbar__actions">
+      <button class="navbar__notif-btn" id="notifBtn">
+        <span class="material-symbols-outlined">notifications</span>
+        <span class="navbar__notif-dot"></span>
+      </button>
+
+      <div class="navbar__sync-badge">
+        <span class="material-symbols-outlined">sync</span>
+        <span>Live Sync</span>
+      </div>
+
+      <div class="navbar__user">
+        <div class="navbar__user-info">
+          <p class="name">Commander Shepard</p>
+          <p class="role">Central District Authority</p>
+        </div>
+        <img
+          class="navbar__avatar"
+          alt="User Profile"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFFtlV9oycZ3wJhc7_Z3_oM8yOfJvB0ykfPElqm-F9oqtOfB01Mly_9QgdBXzwLfE4u31FBYyIFSLb7vldPHh8XNxP8N9iscv4eYjkrhSPfNJ47XaIRY2l3519nVeYuPYvturqN7h5YUuJSXukAycPBaRwNfcF1YE5ZxrONkUT8XP_xobA2pRqezJmCbr1zSGAJqH89tWGsuzy3fkdvPclbGu-_Lf4dKJgysojnWPj6NNb2pdDuK2_udrFh2t00jfKsFOqL4-xLJ6C"
+        />
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="main-content">
+
+    <!-- A. TOP SUMMARY DASHBOARD -->
+    <section class="stats-row">
+      <!-- Congestion Index -->
+      <div class="stat-card">
+        <div class="stat-card__glow"></div>
+        <p class="stat-card__label">Congestion Index</p>
+        <div class="stat-card__row">
+          <h3 class="stat-card__value" id="liveCongestion">24<span class="unit unit--tertiary">%</span></h3>
+          <span class="stat-card__badge stat-card__badge--tertiary" id="liveCongestionBadge">-12% vs last hr</span>
+        </div>
+      </div>
+
+      <!-- Avg Signal Delay -->
+      <div class="stat-card">
+        <p class="stat-card__label">Avg Signal Delay</p>
+        <div class="stat-card__row">
+          <h3 class="stat-card__value" id="liveDelay">18<span class="unit unit--muted">s</span></h3>
+          <span class="material-symbols-outlined stat-card__icon">timer</span>
+        </div>
+      </div>
+
+      <!-- Vehicle Throughput -->
+      <div class="stat-card">
+        <p class="stat-card__label">Vehicle Throughput</p>
+        <div class="stat-card__row">
+          <h3 class="stat-card__value" id="liveThroughput">14.2<span class="unit unit--muted">k</span></h3>
+          <span class="stat-card__badge stat-card__badge--primary" id="liveThroughputBadge">+4.2%</span>
+        </div>
+      </div>
+
+      <!-- Efficiency Score -->
+      <div class="stat-card">
+        <p class="stat-card__label">Efficiency Score</p>
+        <div class="stat-card__row">
+          <h3 class="stat-card__value" id="liveEfficiency">92<span class="unit unit--tertiary">/100</span></h3>
+          <div class="stat-card__progress">
+            <div class="stat-card__progress-fill" id="liveEfficiencyBar" style="width: 92%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Violations -->
+      <div class="stat-card">
+        <p class="stat-card__label">Active Violations</p>
+        <div class="stat-card__row">
+          <h3 class="stat-card__value stat-card__value--error" id="liveViolations">08</h3>
+          <span class="material-symbols-outlined stat-card__icon--error">warning</span>
+        </div>
+      </div>
+
+      <!-- Emergency Status -->
+      <div class="stat-card">
+        <p class="stat-card__label">Emergency Status</p>
+        <div class="stat-card__status">
+          <div class="stat-card__status-dot" id="liveEmergencyDot"></div>
+          <h3 class="stat-card__status-text" id="liveEmergencyText">NOMINAL</h3>
+        </div>
+        <p class="stat-card__sub" id="liveEmergencySub">No active medical corridors</p>
+      </div>
+    </section>
+
+    <!-- MAIN ANALYTICS GRID -->
+    <div class="dashboard-grid">
+
+      <!-- B. JUNCTION SIMULATOR -->
+      <div class="junction-sim">
+        <div class="junction-sim__header">
+          <div>
+            <h2 class="junction-sim__title">
+              <span class="material-symbols-outlined">dynamic_feed</span>
+              Junction Sim: Node 402-B
+            </h2>
+            <p class="junction-sim__subtitle">Real-time simulation vs AI projection</p>
+          </div>
+          <div class="junction-sim__actions">
+            <button class="btn-configure">Configure Node</button>
+            <button class="btn-optimizing">Optimizing...</button>
+          </div>
+        </div>
+
+        <div class="junction-sim__split">
+          <!-- Before AI -->
+          <div class="junction-sim__pane junction-sim__pane--legacy">
+            <div class="junction-sim__label junction-sim__label--legacy">Legacy Pattern</div>
+            <img
+              alt="Traffic Junction Overhead — Legacy"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPxKUsMd4denP_UbhXmAKmeQ7AwLgG4wRIidqN0P1zfWWCUYa76fjUCqX0ufwIOJj66zEXMP89Dw1uMa8jpaPXcldgpMnWuYFOkDGwnD-9c2AXbv-aoNF0HfnW_OGyMBBFJic1n0N1ma_9T9TR8UlSsVVRC09pmMZAq0kZ5DegwyOg5GY6YliehGSgNT6aMAAHpiLUvEtMWssbeiBnLFT5s3EUoR2WAACmZfMnOKKds24NrC5OJsfJarX-ejI_sQJ5dl3XlzFjsM3b"
+            />
+            <div class="junction-sim__density-overlay"></div>
+            <div class="junction-sim__density-glow"></div>
+          </div>
+
+          <!-- After AI -->
+          <div class="junction-sim__pane junction-sim__pane--ai">
+            <div class="junction-sim__label junction-sim__label--ai">AI Optimized</div>
+            <img
+              alt="Traffic Junction Overhead — AI Optimized"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOioWByV1ovu0gAa_WQxyPJwopV7gn1_fgB9Du1PmwHjXRz8OsJiW6VJy2h_yTl2WAQ8s96iRE3k2iaIZikcxDU07nEccMekAh2dyUSbGXAeNQl3NK7DXVUVF2ZmhyFoA_1EplDHOAP_ecNMAVDFyXA9cw_Y8bxAI-e61mxXeM_cHZL5kuywfMjZNPv-zwqxsTbaA-Uhecb_qKsEkrAmK9J-OvU3dRMkw1vY_t2AkMKxe0SzNjiqc5xGh15p5PLFpWA1Zl3Gfp6mNi"
+            />
+            <div class="junction-sim__flow-overlay"></div>
+
+            <!-- Lane Indicators -->
+            <div class="lane-indicators">
+              <div class="lane-dot">
+                <span class="lane-dot__circle lane-dot__circle--error"></span>
+                <span class="lane-dot__label">L1</span>
+              </div>
+              <div class="lane-dot">
+                <span class="lane-dot__circle lane-dot__circle--tertiary"></span>
+                <span class="lane-dot__label lane-dot__label--active">L2</span>
+              </div>
+              <div class="lane-dot">
+                <span class="lane-dot__circle lane-dot__circle--tertiary"></span>
+                <span class="lane-dot__label lane-dot__label--active">L3</span>
+              </div>
+              <div class="lane-dot">
+                <span class="lane-dot__circle lane-dot__circle--tertiary"></span>
+                <span class="lane-dot__label lane-dot__label--active">L4</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C. RIGHT COLUMN: DETECTION + PEDESTRIAN -->
+      <div class="right-column">
+
+        <!-- Detection Feed -->
+        <div class="detection-card">
+          <h2 class="card-title">
+            <span class="material-symbols-outlined">videocam</span>
+            Detection Feed
+          </h2>
+          <div class="detection-card__dropzone" id="dropzone">
+            <span class="material-symbols-outlined">cloud_upload</span>
+            <p>Drop local feed or IP source</p>
+          </div>
+          <div class="detection-card__stats">
+            <div class="detection-stat">
+              <span class="detection-stat__label">Class: Passenger Car</span>
+              <span class="detection-stat__value">412 Units</span>
+            </div>
+            <div class="detection-stat">
+              <span class="detection-stat__label">Class: Heavy Goods</span>
+              <span class="detection-stat__value">84 Units</span>
+            </div>
+            <div class="detection-card__confidence-bar">
+              <div class="detection-card__confidence-fill" style="width: 78%"></div>
+            </div>
+            <div class="detection-card__confidence-labels">
+              <span>Confidence Score</span>
+              <span>98.8%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pedestrian Matrix -->
+        <div class="pedestrian-card">
+          <div class="pedestrian-card__glow"></div>
+          <h2 class="card-title card-title--tertiary">
+            <span class="material-symbols-outlined">directions_walk</span>
+            Pedestrian Matrix
+          </h2>
+          <div class="pedestrian-card__body">
+            <div class="pedestrian-ring">
+              <div class="pedestrian-ring__spinner"></div>
+              <span class="pedestrian-ring__value" id="livePedestrians">12</span>
+            </div>
+            <div class="pedestrian-card__info">
+              <p>Crossing active at <strong>Zone 4A</strong>. Wait time reduced by 40% using vision-based preempt.</p>
+              <div class="pedestrian-card__badges">
+                <span class="badge badge--tertiary">SAFETY: OPTIMAL</span>
+                <span class="badge badge--muted">SYNCED</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- D. METROPOLITAN HEATMAP — LIVE GOOGLE MAPS -->
+      <div class="heatmap">
+        <div class="heatmap__header">
+          <div>
+            <h2 class="heatmap__title">Metropolitan Heatmap</h2>
+            <p class="heatmap__subtitle">Live traffic across all regions · Google Maps</p>
+          </div>
+          <div class="heatmap__tabs">
+            <button class="heatmap__tab heatmap__tab--active" data-tab="global">Global</button>
+            <button class="heatmap__tab" data-tab="district">District</button>
+          </div>
+        </div>
+        <div class="heatmap__map">
+          <div id="googleMap" class="heatmap__gmap"></div>
+          <!-- Loading state shown until map initializes -->
+          <div class="heatmap__map-loader" id="mapLoader">
+            <span class="material-symbols-outlined heatmap__map-loader-icon">public</span>
+            <p>Initializing live traffic feed...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- E. AI IMPACT METRIC -->
+      <div class="ai-impact">
+        <h2 class="ai-impact__title">AI Impact Metric</h2>
+        <div class="ai-impact__section">
+          <!-- Delay Reduction -->
+          <div class="ai-impact__delay">
+            <div class="ai-impact__delay-header">
+              <div>
+                <p class="ai-impact__delay-label">Delay Reduction</p>
+                <h4 class="ai-impact__delay-value">-34.2%</h4>
+              </div>
+              <span class="ai-impact__delay-trend">+2.1% this week</span>
+            </div>
+            <div class="bar-chart">
+              <div class="bar-chart__bar bar-chart__bar--muted" style="height: 33%"></div>
+              <div class="bar-chart__bar bar-chart__bar--muted" style="height: 50%"></div>
+              <div class="bar-chart__bar bar-chart__bar--muted" style="height: 66%"></div>
+              <div class="bar-chart__bar bar-chart__bar--primary" style="height: 83%"></div>
+              <div class="bar-chart__bar bar-chart__bar--primary" style="height: 58%"></div>
+              <div class="bar-chart__bar bar-chart__bar--primary" style="height: 75%"></div>
+              <div class="bar-chart__bar bar-chart__bar--primary" style="height: 100%"></div>
+            </div>
+          </div>
+
+          <!-- Fuel & CO2 -->
+          <div class="ai-impact__metrics-grid">
+            <div class="ai-metric-card">
+              <p class="ai-metric-card__label">Fuel Saved</p>
+              <h4 class="ai-metric-card__value ai-metric-card__value--tertiary">1.2k Gal</h4>
+            </div>
+            <div class="ai-metric-card">
+              <p class="ai-metric-card__label">CO2 Reduced</p>
+              <h4 class="ai-metric-card__value ai-metric-card__value--secondary">4.8 Tons</h4>
+            </div>
+          </div>
+
+          <!-- AI Prediction -->
+          <div class="ai-prediction">
+            <div class="ai-prediction__header">
+              <span class="material-symbols-outlined">auto_awesome</span>
+              <div>
+                <p class="ai-prediction__title">AI Prediction</p>
+                <p class="ai-prediction__text">System predicts a <strong>14% surge</strong> in Node 402 at 17:30. Recommending proactive phase shifting.</p>
+                <button class="ai-prediction__btn" id="authorizeBtn">Authorize Adjustment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- F. EMERGENCY CORRIDOR MONITOR -->
+      <div class="emergency-card">
+        <div class="emergency-card__glow"></div>
+        <div class="emergency-card__header">
+          <h2 class="card-title card-title--error">
+            <span class="material-symbols-outlined">ambulance</span>
+            Emergency Corridor Monitor
+          </h2>
+          <span class="emergency-card__live-badge">LIVE FEED</span>
+        </div>
+
+        <div class="emergency-alert">
+          <div class="emergency-alert__icon">
+            <span class="material-symbols-outlined">emergency_home</span>
+          </div>
+          <div class="emergency-alert__body">
+            <div class="emergency-alert__top">
+              <h4 class="emergency-alert__title">Ambulance Unit #441</h4>
+              <span class="emergency-alert__time">2 mins ago</span>
+            </div>
+            <p class="emergency-alert__route">Route: Central Hospital → Station Square</p>
+            <div class="emergency-alert__corridor">
+              <span class="emergency-alert__corridor-dot"></span>
+              <span class="emergency-alert__corridor-text">GREEN CORRIDOR ACTIVE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Violations -->
+        <div class="violations">
+          <p class="violations__title">Recent Violations</p>
+          <div class="violations__list">
+            <div class="violation-item">
+              <span class="violation-item__text">Red Light Jump: <span>#TX-9921</span></span>
+              <span class="violation-item__severity violation-item__severity--high">SEV: HIGH</span>
+            </div>
+            <div class="violation-item">
+              <span class="violation-item__text">Illegal U-Turn: <span>#LX-0012</span></span>
+              <span class="violation-item__severity violation-item__severity--med">SEV: MED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- I. SYSTEM HEALTH & REPORTING -->
+      <div class="system-health">
+        <div>
+          <h2 class="system-health__title">System Health &amp; Reporting</h2>
+          <div class="system-health__metrics">
+            <div class="health-metric">
+              <p class="health-metric__label">Network Uptime</p>
+              <div class="health-metric__value">
+                <span class="health-metric__number">99.98%</span>
+                <span class="material-symbols-outlined health-metric__icon health-metric__icon--tertiary">cloud_done</span>
+              </div>
+            </div>
+            <div class="health-metric">
+              <p class="health-metric__label">API Latency</p>
+              <div class="health-metric__value">
+                <span class="health-metric__number">42ms</span>
+                <span class="material-symbols-outlined health-metric__icon health-metric__icon--primary">bolt</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="report-export">
+          <div class="report-export__info">
+            <div class="report-export__icon">
+              <span class="material-symbols-outlined">picture_as_pdf</span>
+            </div>
+            <div>
+              <p class="report-export__title">Daily Traffic Optimization Summary</p>
+              <p class="report-export__meta">v2.41 · 2.4MB · Today, 08:00</p>
+            </div>
+          </div>
+          <button class="report-export__btn" id="exportPdfBtn">
+            <span class="material-symbols-outlined">download</span>
+            Export PDF
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p class="footer__version">FlowSync AI // Tactical Node Network v4.0.2</p>
+      <div class="footer__links">
+        <span class="footer__link">Privacy Protocol</span>
+        <span class="footer__link">Compliance Registry</span>
+        <span class="footer__link">Node Status</span>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module" src="/scripts/guard.js"></script>
+  <script type="module" src="/scripts/main.js"></script>
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVNJE7hLDNaMhk4nVOQ_KjMqqmZAjOMuk&callback=initMap"></script>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowSync AI | Emergency Response</title>
+  <meta name="description" content="FlowSync AI — AI-powered real-time incident detection, emergency prioritization, and traffic corridor clearance." />
+  <link rel="stylesheet" href="/styles/index.css" />
+  <link rel="stylesheet" href="/styles/emergency-response.css" />
+</head>
+
+<body>
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__logo">
+      <h1>FlowSync AI</h1>
+      <p>Cinematic Intelligence</p>
+    </div>
+
+    <nav class="sidebar__nav">
+      <a href="/index.html" class="sidebar__link" data-nav="command">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Command Center</span>
+      </a>
+      <a href="/junction-sim.html" class="sidebar__link" data-nav="junction">
+        <span class="material-symbols-outlined">simulation</span>
+        <span>Junction Sim</span>
+      </a>
+      <a href="/vehicle-detection.html" class="sidebar__link" data-nav="detection">
+        <span class="material-symbols-outlined">detection_and_zone</span>
+        <span>Vehicle Detection</span>
+      </a>
+      <a href="/safety-matrix.html" class="sidebar__link" data-nav="safety">
+        <span class="material-symbols-outlined">security</span>
+        <span>Safety Matrix</span>
+      </a>
+      <a href="/emergency-response.html" class="sidebar__link sidebar__link--active sidebar__link--emergency" data-nav="emergency">
+        <span class="material-symbols-outlined">emergency</span>
+        <span>Emergency Response</span>
+      </a>
+      <a href="/analytics.html" class="sidebar__link" data-nav="analytics">
+        <span class="material-symbols-outlined">insights</span>
+        <span>Analytics</span>
+      </a>
+    </nav>
+
+    <div class="sidebar__bottom">
+      <a href="/settings.html" class="sidebar__link" data-nav="settings">
+        <span class="material-symbols-outlined">settings</span>
+        <span>Settings</span>
+      </a>
+      <a href="#" class="sidebar__link" id="logoutBtn">
+        <span class="material-symbols-outlined">logout</span>
+        <span>Sign Out</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ═══ TOP NAVBAR ═══ -->
+  <header class="navbar">
+    <div class="navbar__search">
+      <span class="material-symbols-outlined">search</span>
+      <input type="text" placeholder="Search corridors or units..." />
+    </div>
+
+    <div class="navbar__actions">
+      <button class="navbar__notif-btn" id="notifBtn">
+        <span class="material-symbols-outlined">notifications</span>
+        <span class="navbar__notif-dot"></span>
+      </button>
+
+      <div class="navbar__sync-badge">
+        <span class="material-symbols-outlined">sync</span>
+        <span>Live Sync</span>
+      </div>
+
+      <div class="navbar__user">
+        <div class="navbar__user-info">
+          <p class="name">Commander Shepard</p>
+          <p class="role">Central District Authority</p>
+        </div>
+        <img
+          class="navbar__avatar"
+          alt="User Profile"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFFtlV9oycZ3wJhc7_Z3_oM8yOfJvB0ykfPElqm-F9oqtOfB01Mly_9QgdBXzwLfE4u31FBYyIFSLb7vldPHh8XNxP8N9iscv4eYjkrhSPfNJ47XaIRY2l3519nVeYuPYvturqN7h5YUuJSXukAycPBaRwNfcF1YE5ZxrONkUT8XP_xobA2pRqezJmCbr1zSGAJqH89tWGsuzy3fkdvPclbGu-_Lf4dKJgysojnWPj6NNb2pdDuK2_udrFh2t00jfKsFOqL4-xLJ6C"
+        />
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="main-content">
+
+    <!-- 1. PAGE HEADER -->
+    <div class="er-header">
+      <div>
+        <h1 class="er-header__title">Emergency Response</h1>
+        <p class="er-header__subtitle">AI-powered real-time incident detection, emergency prioritization, and traffic corridor clearance</p>
+      </div>
+      <div class="er-header__badge">
+        <span class="er-header__badge-dot"></span>
+        RESPONSE GRID: LIVE
+      </div>
+    </div>
+
+    <!-- 2. KPI SUMMARY ROW -->
+    <section class="er-kpi-grid">
+      <!-- Active Emergencies -->
+      <div class="er-glass er-kpi">
+        <div class="er-kpi__top">
+          <span class="material-symbols-outlined er-kpi__icon er-kpi__icon--primary">emergency</span>
+          <span class="er-kpi__badge">ACTIVE</span>
+        </div>
+        <div class="er-kpi__value">06</div>
+        <div class="er-kpi__label">Active Emergencies</div>
+      </div>
+      <!-- Avg Response Time -->
+      <div class="er-glass er-kpi">
+        <div class="er-kpi__top">
+          <span class="material-symbols-outlined er-kpi__icon er-kpi__icon--primary">timer</span>
+          <span class="er-kpi__badge er-kpi__badge--primary">-18%</span>
+        </div>
+        <div class="er-kpi__value">02m 14s</div>
+        <div class="er-kpi__label">Avg Response Time</div>
+      </div>
+      <!-- Critical Incidents -->
+      <div class="er-glass er-kpi er-kpi--critical">
+        <div class="er-kpi__top">
+          <span class="material-symbols-outlined er-kpi__icon er-kpi__icon--error">warning</span>
+          <span class="er-kpi__badge er-kpi__badge--error">URGENT</span>
+        </div>
+        <div class="er-kpi__value er-kpi__value--error">02</div>
+        <div class="er-kpi__label">Critical Incidents</div>
+      </div>
+      <!-- Blocked Lanes -->
+      <div class="er-glass er-kpi er-kpi--flow-impact">
+        <div class="er-kpi__top">
+          <span class="material-symbols-outlined er-kpi__icon er-kpi__icon--warning">block</span>
+          <span class="er-kpi__badge er-kpi__badge--warning">FLOW IMPACT</span>
+        </div>
+        <div class="er-kpi__value er-kpi__value--warning">04</div>
+        <div class="er-kpi__label">Blocked Lanes</div>
+      </div>
+      <!-- Signal Overrides -->
+      <div class="er-glass er-kpi">
+        <div class="er-kpi__top">
+          <span class="material-symbols-outlined er-kpi__icon er-kpi__icon--primary">priority_high</span>
+          <span class="er-kpi__badge">SYSTEM</span>
+        </div>
+        <div class="er-kpi__value">03</div>
+        <div class="er-kpi__label">Signal Overrides</div>
+      </div>
+      <!-- Resolved Today -->
+      <div class="er-glass er-kpi">
+        <div class="er-kpi__top">
+          <span class="material-symbols-outlined er-kpi__icon er-kpi__icon--success">check_circle</span>
+          <span class="er-kpi__badge">STABLE</span>
+        </div>
+        <div class="er-kpi__value">17</div>
+        <div class="er-kpi__label">Resolved Today</div>
+      </div>
+    </section>
+
+    <!-- 3. MAIN DASHBOARD GRID -->
+    <div class="er-dashboard">
+
+      <!-- LEFT: Hero Map + Lower Feed/Dispatch -->
+      <div style="display:flex;flex-direction:column;gap:1.5rem;">
+
+        <!-- Hero Live Junction Map -->
+        <div class="er-glass er-hero-map">
+          <div class="er-hero-map__bg">
+            <img alt="Aerial view city junction" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC07uk3cII9s8jTHbRxgYUFOMMx3g7wVfOBSOv5RmEExrlFOVUIZhY8evkeWS7JcLiCzfPZkGWT_rOoKBv4wiCq3IAsIpOKRNhsisYAPorhINcD1iO1hGah6M3j9jJTpE4L6Ffwx92g7OZ3Iw-q09CODEh9ddzHCrNP8StmInwfTzR3K9Js1xAIkJwepgBl8fhgOd9AtZzMJ7okwCTSxTrGbmkzF8nj9DM48yk_Dtm_Fan9T62kq8NCWAiZRYYCQlFi2qUnJv87HjRy" />
+            <div class="er-hero-map__gradient"></div>
+          </div>
+
+          <!-- Overlays -->
+          <div class="er-hero-map__overlay">
+            <div class="er-hero-map__feed-badge">
+              <span class="er-hero-map__feed-dot"></span>
+              LIVE JUNCTION AI FEED
+            </div>
+          </div>
+
+          <!-- Incident Markers -->
+          <div class="er-marker er-marker--collision">
+            <div class="er-marker__dot er-marker__dot--red"></div>
+            <span class="er-marker__label er-marker__label--red">COLLISION</span>
+          </div>
+
+          <div class="er-marker er-marker--blocked">
+            <div class="er-marker__dot er-marker__dot--orange"></div>
+            <span class="er-marker__label er-marker__label--orange">BLOCKED</span>
+          </div>
+
+          <!-- Route SVG Lines -->
+          <svg class="er-hero-map__routes">
+            <path d="M 0 500 L 400 300 L 800 200" fill="none" stroke="var(--tertiary, #4FDBC8)" stroke-dasharray="10, 5" stroke-width="4"></path>
+            <circle cx="400" cy="300" r="4" fill="var(--tertiary, #4FDBC8)"></circle>
+            <text x="410" y="290" fill="var(--tertiary, #4FDBC8)" font-family="Inter" font-size="10" font-weight="bold">CLEAR ROUTE</text>
+            <path d="M 800 0 L 500 250" fill="none" stroke="var(--error, #ff716c)" stroke-dasharray="5, 5" stroke-width="2"></path>
+            <text x="510" y="240" fill="var(--error, #ff716c)" font-family="Inter" font-size="10" font-weight="bold">RESPONSE EN ROUTE</text>
+          </svg>
+
+          <!-- Legend -->
+          <div class="er-hero-map__legend">
+            <div class="er-hero-map__chip">Sector: Central Grid A-12</div>
+            <div class="er-hero-map__chip">Active Sensors: 1,204</div>
+          </div>
+        </div>
+
+        <!-- Lower: Incident Feed + Dispatch -->
+        <div class="er-lower-grid">
+          <!-- Active Incident Alert Feed -->
+          <div class="er-glass er-feed">
+            <div class="er-feed__header">
+              <h3 class="er-feed__title">Active Incident Alert Feed</h3>
+              <span class="material-symbols-outlined" style="font-size:1rem;color:var(--on-surface-variant);cursor:pointer;">filter_list</span>
+            </div>
+            <div class="er-feed__body">
+              <!-- Alert 1: Urgent -->
+              <div class="er-alert-tile er-alert-tile--urgent">
+                <div class="er-alert-tile__top">
+                  <span class="er-alert-tile__name">Vehicle Collision (Multi)</span>
+                  <span class="er-alert-tile__badge er-alert-tile__badge--urgent">URGENT</span>
+                </div>
+                <div class="er-alert-tile__meta">
+                  <span class="material-symbols-outlined">location_on</span> Junction 4th & Main
+                  <span>•</span> 14:22:10
+                </div>
+                <div class="er-alert-tile__bottom">
+                  <div class="er-alert-tile__status">
+                    <span class="er-alert-tile__status-dot er-alert-tile__status-dot--red"></span>
+                    <span class="er-alert-tile__status-text" style="color:var(--error);">Responding</span>
+                  </div>
+                  <span class="er-alert-tile__conf">AI Conf: 98.4%</span>
+                </div>
+              </div>
+              <!-- Alert 2: Medium -->
+              <div class="er-alert-tile er-alert-tile--medium">
+                <div class="er-alert-tile__top">
+                  <span class="er-alert-tile__name">Debris on Roadway</span>
+                  <span class="er-alert-tile__badge er-alert-tile__badge--medium">MEDIUM</span>
+                </div>
+                <div class="er-alert-tile__meta">
+                  <span class="material-symbols-outlined">location_on</span> West Tunnel Entry
+                  <span>•</span> 14:18:05
+                </div>
+                <div class="er-alert-tile__bottom">
+                  <div class="er-alert-tile__status">
+                    <span class="er-alert-tile__status-dot er-alert-tile__status-dot--orange"></span>
+                    <span class="er-alert-tile__status-text" style="color:#ffa44f;">In Queue</span>
+                  </div>
+                  <span class="er-alert-tile__conf">AI Conf: 91.2%</span>
+                </div>
+              </div>
+              <!-- Alert 3: Nominal -->
+              <div class="er-alert-tile er-alert-tile--nominal">
+                <div class="er-alert-tile__top">
+                  <span class="er-alert-tile__name">Stalled Vehicle</span>
+                  <span class="er-alert-tile__badge er-alert-tile__badge--nominal">NOMINAL</span>
+                </div>
+                <div class="er-alert-tile__meta">
+                  <span class="material-symbols-outlined">location_on</span> Bridge North Exit
+                  <span>•</span> 14:05:45
+                </div>
+                <div class="er-alert-tile__bottom">
+                  <div class="er-alert-tile__status">
+                    <span class="er-alert-tile__status-dot er-alert-tile__status-dot--teal"></span>
+                    <span class="er-alert-tile__status-text" style="color:var(--tertiary);">Cleared</span>
+                  </div>
+                  <span class="er-alert-tile__conf">AI Conf: 99.9%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dispatch Recommendation -->
+          <div class="er-glass er-dispatch">
+            <div class="er-dispatch__header">
+              <h3 class="er-feed__title">Dispatch Recommendation</h3>
+            </div>
+            <div class="er-dispatch__body">
+              <!-- Dispatch Card 1 -->
+              <div class="er-dispatch-card">
+                <div class="er-dispatch-card__top">
+                  <div class="er-dispatch-card__icon er-dispatch-card__icon--red">
+                    <span class="material-symbols-outlined" style="color:var(--error);">auto_towing</span>
+                  </div>
+                  <div style="flex:1;">
+                    <div class="er-dispatch-card__title-row">
+                      <h4 class="er-dispatch-card__title">Dispatch Tow Unit #04</h4>
+                      <span class="er-dispatch-card__priority er-dispatch-card__priority--1">PRIORITY 1</span>
+                    </div>
+                    <p class="er-dispatch-card__desc">Required to clear lane 2 blockage at Junction 4. Expected impact reduction: 12m.</p>
+                  </div>
+                </div>
+                <div class="er-dispatch-card__actions">
+                  <button class="er-dispatch-card__btn er-dispatch-card__btn--authorize">Authorize</button>
+                  <button class="er-dispatch-card__btn--more">
+                    <span class="material-symbols-outlined" style="font-size:0.75rem;color:var(--on-surface-variant);">more_horiz</span>
+                  </button>
+                </div>
+              </div>
+              <!-- Dispatch Card 2 -->
+              <div class="er-dispatch-card" style="opacity:0.8;">
+                <div class="er-dispatch-card__top">
+                  <div class="er-dispatch-card__icon er-dispatch-card__icon--teal">
+                    <span class="material-symbols-outlined" style="color:var(--tertiary);">local_police</span>
+                  </div>
+                  <div style="flex:1;">
+                    <div class="er-dispatch-card__title-row">
+                      <h4 class="er-dispatch-card__title">Notify Traffic Police</h4>
+                      <span class="er-dispatch-card__priority er-dispatch-card__priority--3">PRIORITY 3</span>
+                    </div>
+                    <p class="er-dispatch-card__desc">Report of debris at West Tunnel. Maintenance unit already en route.</p>
+                  </div>
+                </div>
+                <div class="er-dispatch-card__actions">
+                  <button class="er-dispatch-card__btn er-dispatch-card__btn--ack">Acknowledge</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Row: Diversion + Evidence -->
+        <div class="er-bottom-row">
+          <!-- Traffic Diversion -->
+          <div class="er-glass" style="padding:1.25rem;">
+            <div class="er-diversion__header">
+              <h3 class="er-diversion__title">Traffic Diversion</h3>
+              <div class="er-diversion__stat">
+                <span class="material-symbols-outlined" style="font-size:1rem;">trending_down</span>
+                -22% Delay
+              </div>
+            </div>
+            <div class="er-diversion__body">
+              <div class="er-diversion__map-thumb">
+                <svg width="64" height="64">
+                  <path d="M 0 50 Q 32 50 32 0 M 32 80 Q 32 50 80 50" fill="none" stroke="var(--tertiary, #4FDBC8)" stroke-width="2"></path>
+                  <circle cx="32" cy="50" r="3" fill="var(--error, #ff716c)"></circle>
+                </svg>
+              </div>
+              <div class="er-diversion__info">
+                <h4>Divert Southbound Link</h4>
+                <p>Re-routing 65% of traffic through West Link to bypass active collision zone.</p>
+                <button class="er-diversion__btn">Apply Diversion</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Evidence Gallery -->
+          <div class="er-glass" style="padding:1.25rem;">
+            <h3 class="er-gallery__title">Evidence Gallery</h3>
+            <div class="er-gallery__grid">
+              <div class="er-gallery__item">
+                <img alt="Traffic camera — collision" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDODHVL3cl7hVNTVG1045dowrQO-S5Aytx2cJlug9VF82owAFGbusAaDMn4O14OF9i-BzcnGy8Z71V6-mPDfRBlY7kZdVh0Vw6m8PYQ_En1PS7hSZAS39ntJpQv-cAHmuHYX9NLwV5OCWoHnZTl6jTUlwtXQssb2fnGKtf78zFfklTmCD_tRm--ljymMzbCY-cyi9r8sAcBA7bWG710YtO_jUtcNJWumdFTaK6nQvK15vwsxplTMSKA1vWmuR4dHNRFsAYeVjYu_4Rp" />
+                <div class="er-gallery__item-border er-gallery__item-border--red"></div>
+                <span class="er-gallery__item-label er-gallery__item-label--red">COLLISION</span>
+              </div>
+              <div class="er-gallery__item">
+                <img alt="Traffic camera — ambulance" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq8RRKmnFEmSkXDtJ4wdWokKe4-Yp-Vdww08sa1jhRUapoBqgSJN8wquh7CtmwyR7MdP2LvryFIqdfKwe8W_pBI2y9sWsTmeOxblJN6pAd2BuBeSC7gwc2yDFeTd1fxazLlfT211FKD0-wqUT-G5HYvqcHC4vXh_KzXEs4QyIqMavvp1L9E2Xc8A7ulBZ_YAvoqQfNf816K7ZZ5MROtGpLBRgPrjmgfXhsLaaSkcdQVwckdJggmATik1BolvWLdP5aAmAuhVhQI_YW" />
+                <div class="er-gallery__item-border er-gallery__item-border--teal"></div>
+                <span class="er-gallery__item-label er-gallery__item-label--teal">UNIT #01</span>
+              </div>
+              <div class="er-gallery__item">
+                <img alt="Traffic camera — blocked lane" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI88nD9VS6m7S2efyZ_ACMAz5H5eCEVO3fleqsC_vqWjuJc_qHzVn23HZN5MwC6llKXe3Ow8jeJ8i0vC_5DcWEVS_bmkfOLjhJIbhGqzzHKP-EPQWqka0sdVAkUOTETW6rb5gQgo7U7nowjubhfVqyjkIQ4K6LTo8q7qYyyis2EzADKYUHX3BTyAttW3wgwudE3HMZmdGqbFyZ2RBJUfAkb9kmeVlwNf2c1ul4lv3Zyrob786g_lrkw4Ym1tX45OD-47Wau7pJWA21" />
+                <div class="er-gallery__item-border er-gallery__item-border--orange"></div>
+                <span class="er-gallery__item-label er-gallery__item-label--orange">BLOCKED</span>
+              </div>
+            </div>
+            <div class="er-gallery__footer">
+              <span class="er-gallery__cam-label">Feed: CAM_NORTH_12-4</span>
+              <span class="material-symbols-outlined" style="font-size:0.75rem;color:var(--on-surface-variant);cursor:pointer;">open_in_full</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDE PANELS -->
+      <div class="er-right-stack">
+
+        <!-- Detection & ETA -->
+        <div class="er-glass" style="overflow:hidden;">
+          <div class="er-panel-header">
+            <h3 class="er-panel-header__title er-panel-header__title--primary">
+              <span class="material-symbols-outlined" style="font-size:0.875rem;">radar</span>
+              Detection & ETA
+            </h3>
+          </div>
+          <div style="padding:1.25rem;">
+            <div class="er-detection-row">
+              <div class="er-detection-row__left">
+                <div class="er-detection-icon er-detection-icon--primary">
+                  <span class="material-symbols-outlined" style="color:var(--tertiary);">ambulance</span>
+                </div>
+                <div>
+                  <div class="er-detection-name">Ambulance Unit 01</div>
+                  <div class="er-detection-status">Status: Emergency Lights Active</div>
+                </div>
+              </div>
+              <div class="er-detection-eta">
+                <div class="er-detection-eta__time er-detection-eta__time--primary">01m 42s</div>
+                <div class="er-detection-eta__label">Estimated Arrival</div>
+              </div>
+            </div>
+            <div class="er-detection-row">
+              <div class="er-detection-row__left">
+                <div class="er-detection-icon er-detection-icon--warning">
+                  <span class="material-symbols-outlined" style="color:#ffa44f;">fire_truck</span>
+                </div>
+                <div>
+                  <div class="er-detection-name">Fire Unit 02</div>
+                  <div class="er-detection-status">Status: Dispatched</div>
+                </div>
+              </div>
+              <div class="er-detection-eta">
+                <div class="er-detection-eta__time" style="color:var(--on-surface);">03m 10s</div>
+                <div class="er-detection-eta__label">Estimated Arrival</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Green Corridor -->
+        <div class="er-glass er-corridor" style="overflow:hidden;">
+          <div class="er-panel-header er-corridor-header">
+            <h3 class="er-panel-header__title er-panel-header__title--muted" style="color:var(--on-surface);">Green Corridor</h3>
+            <span class="er-corridor-badge">ACTIVE</span>
+          </div>
+          <div style="padding:1.25rem;">
+            <div class="er-corridor-stats">
+              <div>
+                <div class="er-corridor-stat__label">Status</div>
+                <div class="er-corridor-stat__value er-corridor-stat__value--primary">Preemption Enabled</div>
+              </div>
+              <div>
+                <div class="er-corridor-stat__label">Saved Time</div>
+                <div class="er-corridor-stat__value" style="color:var(--on-surface);">+01m 28s</div>
+              </div>
+            </div>
+            <div class="er-timeline">
+              <div class="er-timeline__item">
+                <span class="er-timeline__dot er-timeline__dot--done"></span>
+                <span class="er-timeline__name">Junction 01</span>
+                <span class="er-timeline__status er-timeline__status--cleared">CLEARED</span>
+              </div>
+              <div class="er-timeline__item">
+                <span class="er-timeline__dot er-timeline__dot--done"></span>
+                <span class="er-timeline__name">Junction 02</span>
+                <span class="er-timeline__status er-timeline__status--cleared">CLEARED</span>
+              </div>
+              <div class="er-timeline__item">
+                <span class="er-timeline__dot er-timeline__dot--pending"></span>
+                <span class="er-timeline__name">Main St Crossing</span>
+                <span class="er-timeline__status er-timeline__status--pending">LOCKING...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Severity Classifier -->
+        <div class="er-glass" style="padding:1.25rem;">
+          <h3 class="er-feed__title" style="margin-bottom:1rem;">AI Severity Classifier</h3>
+          <div class="er-severity__header">
+            <div>
+              <div class="er-severity__type-label">Type</div>
+              <div class="er-severity__type-value">Major Collision</div>
+            </div>
+            <div style="text-align:right;">
+              <div class="er-severity__score-label">Severity Score</div>
+              <div class="er-severity__score-value">8.4</div>
+            </div>
+          </div>
+          <div class="er-severity__bars">
+            <div>
+              <div class="er-severity-bar__header">
+                <span style="color:var(--on-surface-variant);">Grid Disruption</span>
+                <span style="color:var(--on-surface);">High (22 mins)</span>
+              </div>
+              <div class="er-severity-bar__track">
+                <div class="er-severity-bar__fill--red" style="width:85%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="er-severity-bar__header">
+                <span style="color:var(--on-surface-variant);">Secondary Risk</span>
+                <span style="color:var(--on-surface);">Moderate</span>
+              </div>
+              <div class="er-severity-bar__track">
+                <div class="er-severity-bar__fill--orange" style="width:45%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tactical Overrides -->
+        <div class="er-glass er-overrides" style="padding:1.25rem;">
+          <h3 class="er-overrides__title">
+            <span class="material-symbols-outlined" style="font-size:0.875rem;">lock_open</span>
+            Tactical Overrides
+          </h3>
+          <div class="er-overrides__grid">
+            <button class="er-overrides__btn">Force Green</button>
+            <button class="er-overrides__btn">Hold All Red</button>
+            <button class="er-overrides__btn">Close Lane</button>
+            <button class="er-overrides__btn">Flash Mode</button>
+            <button class="er-overrides__btn er-overrides__btn--primary">Resume AI Control</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer" style="margin-top:2rem;">
+      <p class="footer__version">FlowSync AI // Tactical Node Network v4.0.2</p>
+      <div class="footer__links">
+        <span class="footer__link">Privacy Protocol</span>
+        <span class="footer__link">Compliance Registry</span>
+        <span class="footer__link">Node Status</span>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module" src="/scripts/guard.js"></script>
+  <script type="module" src="/scripts/main.js"></script>
+</body>
+</html>

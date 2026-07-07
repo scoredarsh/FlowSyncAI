@@ -1,0 +1,215 @@
+/* ==========================================================================
+   SETTINGS PAGE (set-*)
+   User Profile and Preferences
+   ========================================================================== */
+
+/* ── Layout ── */
+.set-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 4rem;
+}
+
+.set-header {
+  margin-bottom: 2rem;
+}
+
+.set-header__title {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #e5e2e3;
+  margin: 0;
+}
+
+.set-header__subtitle {
+  color: #8b8d98;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* ── Panel / Card ── */
+.set-panel {
+  background: rgba(21, 26, 33, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(68, 72, 79, 0.4);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.set-panel-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #e5e2e3;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.set-panel-title .material-symbols-outlined {
+  color: var(--tertiary, #4fdbc8);
+}
+
+/* ── Profile Header (Avatar + Name) ── */
+.set-profile-top {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(68, 72, 79, 0.2);
+}
+
+.set-avatar-wrap {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(79, 219, 200, 0.5);
+  box-shadow: 0 0 15px rgba(79, 219, 200, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--tertiary), #adc6ff);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0a0e14;
+}
+
+.set-avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.set-profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.set-user-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #e5e2e3;
+  margin: 0;
+}
+
+.set-user-role {
+  color: #8b8d98;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* ── Form ── */
+.set-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.set-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.set-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.set-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #8b8d98;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.set-input {
+  background: rgba(10, 14, 20, 0.6);
+  border: 1px solid rgba(68, 72, 79, 0.4);
+  border-radius: 0.375rem;
+  padding: 0.75rem 1rem;
+  color: #e5e2e3;
+  font-family: inherit;
+  font-size: 0.875rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.set-input:focus {
+  border-color: rgba(79, 219, 200, 0.5);
+  box-shadow: 0 0 0 2px rgba(79, 219, 200, 0.1);
+}
+
+.set-input:disabled {
+  background: rgba(10, 14, 20, 0.3);
+  color: #8b8d98;
+  cursor: not-allowed;
+  border-color: rgba(68, 72, 79, 0.2);
+}
+
+/* ── Actions ── */
+.set-actions {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.set-btn {
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.set-btn--primary {
+  background: linear-gradient(135deg, #4fdbc8, #3ac4b0);
+  color: #0a0e14;
+}
+
+.set-btn--primary:hover {
+  box-shadow: 0 0 15px rgba(79, 219, 200, 0.3);
+  transform: translateY(-1px);
+}
+
+.set-btn--primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Messages ── */
+.set-message {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  display: none;
+}
+
+.set-message--success {
+  display: block;
+  background: rgba(79, 219, 200, 0.1);
+  border: 1px solid rgba(79, 219, 200, 0.2);
+  color: #4fdbc8;
+}
+
+.set-message--error {
+  display: block;
+  background: rgba(255, 113, 108, 0.1);
+  border: 1px solid rgba(255, 113, 108, 0.2);
+  color: #ffb4ab;
+}

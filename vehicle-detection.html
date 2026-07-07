@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowSync AI | Cinematic Intelligence</title>
+  <meta name="description" content="FlowSync AI — Tactical Node Network for AI-powered traffic and junction optimization. Real-time simulation, vehicle detection, and emergency corridor management." />
+  <link rel="stylesheet" href="/styles/index.css" />
+  <link rel="stylesheet" href="/styles/vehicle-detection.css" />
+</head>
+
+<body>
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__logo">
+      <h1>FlowSync AI</h1>
+      <p>Cinematic Intelligence</p>
+    </div>
+
+      <a href="/index.html" class="sidebar__link" data-nav="command">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Command Center</span>
+      </a>
+      <a href="/junction-sim.html" class="sidebar__link" data-nav="junction">
+        <span class="material-symbols-outlined">simulation</span>
+        <span>Junction Sim</span>
+      </a>
+      <a href="/vehicle-detection.html" class="sidebar__link sidebar__link--active" data-nav="detection">
+        <span class="material-symbols-outlined">detection_and_zone</span>
+        <span>Vehicle Detection</span>
+      </a>
+      <a href="/safety-matrix.html" class="sidebar__link" data-nav="safety">
+        <span class="material-symbols-outlined">security</span>
+        <span>Safety Matrix</span>
+      </a>
+      <a href="/emergency-response.html" class="sidebar__link sidebar__link--emergency" data-nav="emergency">
+        <span class="material-symbols-outlined">emergency</span>
+        <span>Emergency Response</span>
+      </a>
+      <a href="/analytics.html" class="sidebar__link" data-nav="analytics">
+        <span class="material-symbols-outlined">insights</span>
+        <span>Analytics</span>
+      </a>
+
+    <div class="sidebar__bottom">
+      <a href="/settings.html" class="sidebar__link" data-nav="settings">
+        <span class="material-symbols-outlined">settings</span>
+        <span>Settings</span>
+      </a>
+      <a href="#" class="sidebar__link" id="logoutBtn">
+        <span class="material-symbols-outlined">logout</span>
+        <span>Sign Out</span>
+      </a>
+
+    </div>
+  </aside>
+
+  <!-- ═══ TOP NAVBAR ═══ -->
+  <header class="navbar">
+    <div class="navbar__search">
+      <span class="material-symbols-outlined">search</span>
+      <input type="text" placeholder="Search camera feeds, incidents, vehicle classes..." />
+    </div>
+
+    <div class="navbar__actions">
+      <button class="navbar__notif-btn" id="notifBtn">
+        <span class="material-symbols-outlined">notifications</span>
+        <span class="navbar__notif-dot"></span>
+      </button>
+
+      <div class="navbar__sync-badge">
+        <span class="material-symbols-outlined">sync</span>
+        <span>Live Sync</span>
+      </div>
+
+      <div class="navbar__user">
+        <div class="navbar__user-info">
+          <p class="name">Commander Shepard</p>
+          <p class="role">Central District Authority</p>
+        </div>
+        <img
+          class="navbar__avatar"
+          alt="User Profile"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFFtlV9oycZ3wJhc7_Z3_oM8yOfJvB0ykfPElqm-F9oqtOfB01Mly_9QgdBXzwLfE4u31FBYyIFSLb7vldPHh8XNxP8N9iscv4eYjkrhSPfNJ47XaIRY2l3519nVeYuPYvturqN7h5YUuJSXukAycPBaRwNfcF1YE5ZxrONkUT8XP_xobA2pRqezJmCbr1zSGAJqH89tWGsuzy3fkdvPclbGu-_Lf4dKJgysojnWPj6NNb2pdDuK2_udrFh2t00jfKsFOqL4-xLJ6C"
+        />
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="main-content main-content--vd">
+    
+    <!-- HEADER SECTION -->
+    <header class="vd-header">
+      <h1 class="vd-header__title">Vehicle Detection <span class="vd-header__separator">—</span> Real-Time Traffic Intelligence</h1>
+      <p class="vd-header__subtitle">AI-powered multi-class vehicle detection, tracking, and traffic analytics for mixed urban conditions.</p>
+    </header>
+
+    <!-- KPI ROW (Row of 8) -->
+    <section class="stats-row stats-row--vd">
+      <!-- KPI 1 -->
+      <div class="stat-card stat-card--interactive">
+        <div class="stat-card__glow stat-card__glow--primary"></div>
+        <p class="stat-card__label">Total Vehicles</p>
+        <div class="stat-card__row">
+          <h3 class="stat-card__value">1,248</h3>
+          <span class="stat-card__badge stat-card__badge--secondary">+8.2%</span>
+        </div>
+      </div>
+
+      <!-- KPI 2 -->
+      <div class="stat-card stat-card--interactive">
+        <div class="stat-card__glow stat-card__glow--tertiary"></div>
+        <p class="stat-card__label">PCU Traffic Load</p>
+        <div class="stat-card__row">
+          <h3 class="stat-card__value">1.42</h3>
+          <span class="stat-card__badge stat-card__badge--tertiary">Moderate</span>
+        </div>
+      </div>
+
+      <!-- KPI 3 -->
+      <div class="stat-card stat-card--interactive">
+        <p class="stat-card__label">Queue Length</p>
+        <div class="stat-card__stacked">
+          <h3 class="stat-card__value">12 veh / 45m</h3>
+          <span class="stat-card__sub-label">North Arm</span>
+        </div>
+      </div>
+
+      <!-- KPI 4 -->
+      <div class="stat-card stat-card--interactive">
+        <p class="stat-card__label">Pedestrian Count</p>
+        <div class="stat-card__row">
+          <h3 class="stat-card__value">84</h3>
+          <span class="stat-card__sub-label">Peak Hours</span>
+        </div>
+      </div>
+
+      <!-- KPI 5 -->
+      <div class="stat-card stat-card--interactive">
+        <div class="stat-card__glow stat-card__glow--error"></div>
+        <p class="stat-card__label">Active Violations</p>
+        <div class="stat-card__row">
+          <h3 class="stat-card__value stat-card__value--error">14</h3>
+          <span class="material-symbols-outlined stat-card__icon--error animate-pulse">warning</span>
+        </div>
+      </div>
+
+      <!-- KPI 6 -->
+      <div class="stat-card stat-card--interactive">
+        <p class="stat-card__label">Emergency Vehicles</p>
+        <div class="stat-card__stacked">
+          <h3 class="stat-card__value stat-card__value--primary">1 detected</h3>
+          <span class="stat-card__sub-label stat-card__sub-label--truncate">Ambulance (ETA: 2m)</span>
+        </div>
+      </div>
+
+      <!-- KPI 7 -->
+      <div class="stat-card stat-card--interactive">
+        <p class="stat-card__label">Vehicles per Min</p>
+        <div class="stat-card__row">
+          <h3 class="stat-card__value">42</h3>
+          <span class="stat-card__sub-label">AVG</span>
+        </div>
+      </div>
+
+      <!-- KPI 8 -->
+      <div class="stat-card stat-card--interactive">
+        <p class="stat-card__label">AI Confidence</p>
+        <div class="stat-card__stacked mt-1">
+          <h3 class="stat-card__value stat-card__value--secondary">96.2%</h3>
+          <div class="stat-card__progress">
+            <div class="stat-card__progress-fill stat-card__progress-fill--secondary" style="width: 96%"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN CONTENT COLUMNS -->
+    <div class="vd-main-grid">
+      
+      <!-- LEFT COLUMN: DETECTION PREVIEW (60%) -->
+      <section class="vd-hero-panel">
+        <div class="vd-video-container">
+          
+          <!-- Badges -->
+          <div class="vd-video-badges">
+            <div class="vd-badge vd-badge--live">
+              <span class="vd-badge__dot"></span> Live Stream: Cam-402-B
+            </div>
+            <div class="vd-badge vd-badge--primary">4K UHD</div>
+          </div>
+
+          <!-- Camera View -->
+          <div class="vd-video-feed">
+            <img class="vd-video-feed__img" alt="Cinematic night view of a busy city junction" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByWYAOIS1myxtDWN6pT1jphWGqTkfNRK4PQTB-XibNrDsiriW5oJvbzMApdLKhzWJzfe9LobfLReiq3PD7MNPrqmp9zO_1BxXLxAuvHb6y0XQRUL5i-N3TMNIugVI1pseYBEQKOmu-xQIUP1H64Ph45eCmZgwiQg6J4Akuo-FlRjFES09K_0VjV0J3cSIouomPv5QVA6LKKqgouC5TRLrPqmMYd0MkYau0r3J7aLK9A6pYv6mbhXtkECkBQEilmL6SPHJhnniBGatN"/>
+            
+            <!-- AI Overlays -->
+            <div class="vd-overlays">
+              <!-- Car Box -->
+              <div class="vd-bbox vd-bbox--primary" style="top: 30%; left: 20%; width: 32%; height: 25%;">
+                <span class="vd-bbox__label vd-bbox__label--primary">Car [98%]</span>
+                <span class="vd-bbox__id vd-bbox__id--primary">ID: #402</span>
+              </div>
+              
+              <!-- Bus Box -->
+              <div class="vd-bbox vd-bbox--secondary" style="top: 45%; left: 55%; width: 40%; height: 35%;">
+                <span class="vd-bbox__label vd-bbox__label--secondary">Bus [94%]</span>
+                <span class="vd-bbox__id vd-bbox__id--secondary">ID: #391</span>
+              </div>
+              
+              <!-- Bike Box -->
+              <div class="vd-bbox vd-bbox--tertiary" style="top: 60%; left: 38%; width: 15%; height: 18%;">
+                <span class="vd-bbox__label vd-bbox__label--tertiary">Bike [89%]</span>
+              </div>
+            </div>
+            
+            <!-- Scan Line -->
+            <div class="vd-scan-line"></div>
+          </div>
+
+          <!-- Video Controls -->
+          <div class="vd-video-controls">
+            <!-- Timeline -->
+            <div class="vd-timeline">
+              <button class="vd-control-btn"><span class="material-symbols-outlined">play_arrow</span></button>
+              <div class="vd-timeline__track">
+                <div class="vd-timeline__progress" style="width: 65%"></div>
+                <div class="vd-timeline__thumb" style="left: 65%"></div>
+              </div>
+              <span class="vd-timeline__time">00:42:15 / LIVE</span>
+            </div>
+            
+            <!-- Actions & Settings -->
+            <div class="vd-controls-row">
+              <div class="vd-tools">
+                <button class="vd-tool-btn"><span class="material-symbols-outlined">upload</span></button>
+                <div class="vd-divider"></div>
+                <button class="vd-tool-btn vd-tool-btn--active">
+                  <span class="material-symbols-outlined">select_window</span> Bounding Boxes
+                </button>
+                <button class="vd-tool-btn vd-tool-btn--text">
+                  <span class="material-symbols-outlined">label</span> Labels
+                </button>
+                <button class="vd-tool-btn"><span class="material-symbols-outlined">fullscreen</span></button>
+              </div>
+              
+              <div class="vd-settings">
+                <div class="vd-slider-wrapper">
+                  <div class="vd-slider-header">
+                    <span>Confidence Threshold</span>
+                    <span class="vd-slider-val">85%</span>
+                  </div>
+                  <input type="range" class="vd-slider" value="85" min="0" max="100"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN (40%) -->
+      <section class="vd-sidebar-panels">
+        
+        <!-- AI INSIGHT PANEL -->
+        <div class="vd-insight-panel">
+          <div class="vd-insight-panel__glow"></div>
+          <div class="vd-insight-panel__header">
+            <span class="material-symbols-outlined vd-insight-panel__icon">psychology</span>
+            <h3 class="vd-insight-panel__title">Neural Reasoning</h3>
+          </div>
+          <p class="vd-insight-panel__text">
+            High two-wheeler density detected in <span class="vd-text-highlight">South arm</span>. Queue buildup likely within <span class="vd-text-underline">20 seconds</span>. Traffic signal optimization recommended.
+          </p>
+        </div>
+
+        <!-- VEHICLE CLASS BREAKDOWN -->
+        <div class="vd-panel">
+          <div class="vd-panel__header">
+            <h3 class="vd-panel__title">Class Breakdown</h3>
+            <span class="material-symbols-outlined vd-panel__icon">pie_chart</span>
+          </div>
+          <div class="vd-class-breakdown">
+            <!-- Donut Chart -->
+            <div class="vd-donut-chart">
+              <svg viewBox="0 0 36 36" class="vd-donut-svg">
+                <circle cx="18" cy="18" fill="none" r="16" stroke="var(--surface-container-highest)" stroke-width="3"></circle>
+                <circle cx="18" cy="18" fill="none" r="16" stroke="var(--primary)" stroke-dasharray="45, 100" stroke-width="3"></circle>
+                <circle cx="18" cy="18" fill="none" r="16" stroke="var(--secondary)" stroke-dasharray="20, 100" stroke-dashoffset="-45" stroke-width="3"></circle>
+                <circle cx="18" cy="18" fill="none" r="16" stroke="var(--tertiary)" stroke-dasharray="15, 100" stroke-dashoffset="-65" stroke-width="3"></circle>
+              </svg>
+              <div class="vd-donut-val">
+                <span class="vd-donut-val__num">1.2K</span>
+                <span class="vd-donut-val__label">Total</span>
+              </div>
+            </div>
+            
+            <!-- Legend -->
+            <div class="vd-legend">
+              <div class="vd-legend-item">
+                <span class="vd-legend-dot vd-legend-dot--primary"></span>
+                <span class="vd-legend-label">Cars (45%)</span>
+              </div>
+              <div class="vd-legend-item">
+                <span class="vd-legend-dot vd-legend-dot--secondary"></span>
+                <span class="vd-legend-label">Bikes (20%)</span>
+              </div>
+              <div class="vd-legend-item">
+                <span class="vd-legend-dot vd-legend-dot--tertiary"></span>
+                <span class="vd-legend-label">Autos (15%)</span>
+              </div>
+              <div class="vd-legend-item">
+                <span class="vd-legend-dot vd-legend-dot--muted"></span>
+                <span class="vd-legend-label">Others (20%)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EMERGENCY DETECTION -->
+        <div class="vd-emergency-panel">
+          <div class="vd-emergency-panel__top">
+            <div class="vd-emergency-panel__info">
+              <span class="material-symbols-outlined vd-emergency-panel__icon" style="font-variation-settings: 'FILL' 1;">emergency_home</span>
+              <div>
+                <h4 class="vd-emergency-panel__title">Emergency Detected</h4>
+                <p class="vd-emergency-panel__desc">AMBULANCE (NORTH ARM)</p>
+              </div>
+            </div>
+            <span class="vd-emergency-panel__eta">ETA: 1:45s</span>
+          </div>
+          <button class="vd-btn-primary w-full">Trigger Green Corridor</button>
+        </div>
+
+        <!-- QUICK ACTIONS -->
+        <div class="vd-quick-actions">
+          <button class="vd-action-btn">
+            <span class="vd-action-btn__text">Send to Junction Sim</span>
+            <span class="material-symbols-outlined vd-action-btn__icon">chevron_right</span>
+          </button>
+          <button class="vd-action-btn">
+            <span class="vd-action-btn__text">Send to Safety Matrix</span>
+            <span class="material-symbols-outlined vd-action-btn__icon">chevron_right</span>
+          </button>
+          <button class="vd-action-btn">
+            <span class="vd-action-btn__text">Export Snapshot</span>
+            <span class="material-symbols-outlined vd-action-btn__icon">download</span>
+          </button>
+        </div>
+
+      </section>
+    </div>
+
+    <!-- BOTTOM GRID -->
+    <section class="vd-bottom-grid">
+      
+      <!-- PCU Calculator -->
+      <div class="vd-panel vd-panel--flex">
+        <h3 class="vd-panel__title mb-4">PCU Calculator</h3>
+        <div class="vd-pcu">
+          <div class="vd-pcu__header">
+            <div class="vd-pcu__val-group">
+              <span class="vd-pcu__val">1.42</span>
+              <span class="vd-pcu__label">Congestion Load</span>
+            </div>
+            <span class="vd-pcu__badge">Moderate</span>
+          </div>
+          <div class="vd-pcu__stats">
+            <div class="vd-pcu__stat-row">
+              <span>Raw Count</span><span>842</span>
+            </div>
+            <div class="vd-pcu__stat-row">
+              <span>PCU Value</span><span>1.42</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lane Density -->
+      <div class="vd-panel">
+        <h3 class="vd-panel__title mb-4">Lane Density</h3>
+        <div class="vd-lane-list">
+          <div class="vd-lane-item">
+            <div class="vd-lane-item__header">
+              <span>North Arm</span><span class="vd-text-secondary">82%</span>
+            </div>
+            <div class="vd-lane-item__track"><div class="vd-lane-item__fill vd-bg-secondary" style="width: 82%"></div></div>
+          </div>
+          <div class="vd-lane-item">
+            <div class="vd-lane-item__header">
+              <span>South Arm</span><span class="vd-text-tertiary">54%</span>
+            </div>
+            <div class="vd-lane-item__track"><div class="vd-lane-item__fill vd-bg-tertiary" style="width: 54%"></div></div>
+          </div>
+          <div class="vd-lane-item">
+            <div class="vd-lane-item__header">
+              <span>East/West</span><span class="vd-text-primary">31%</span>
+            </div>
+            <div class="vd-lane-item__track"><div class="vd-lane-item__fill vd-bg-primary" style="width: 31%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Violation Detection -->
+      <div class="vd-panel">
+        <div class="vd-panel__header mb-4">
+          <h3 class="vd-panel__title">Recent Violations</h3>
+          <span class="vd-panel__live-badge">Live</span>
+        </div>
+        <div class="vd-violation-list">
+          <!-- Violation 1 -->
+          <div class="vd-violation-item">
+            <div class="vd-violation-item__img-wrapper">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG7DvDapgvWMTFCnzL5U9MRqMg6fUSKtnZF_ukikF-8DyORMUmmtVs-GbbGalHvNUTAPCBiuHX9MJL_hg5xSeiLvO_rOu1YYEycNIY8tZrwjaiS03ampnJ50CyTVtQa13eSw3KbXH2yw69TktpxyFhXmVyL0olO8h_XIEQHPkllS1udCn7PLNQFueMy5SpIv5tHaSpNB8MTRBj55yWO-DMt2JSdQ3XXtm9Aq7-GniLmX4A8hiFiOtKi2KlieWwYd5o7isYM8MChM3B" alt="Red light violation" />
+            </div>
+            <div class="vd-violation-item__info">
+              <p class="vd-violation-item__title">Red Light Crossing</p>
+              <p class="vd-violation-item__meta">14:22:10 · ID: TX-482</p>
+            </div>
+          </div>
+          <!-- Violation 2 -->
+          <div class="vd-violation-item">
+            <div class="vd-violation-item__img-wrapper">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv82ek1GZELj1pJ0kwOelCFq3bdMnHndUuoctr1hOslBEPugeYyTyDtIZb_pA33G-uTUa9ko_GnhK_8xO37b0DCsEd587m5-k68tANxyaM77P_qrd2KAjyKFSWS__fE5l-q8m8HUbk457AbgT-Uo6QUJZLoqPUQFfNeqFbOe2B9D4ci1NbbXa5ewAU_UZETPoEu6pyXMmn2W58fgd_YwNF6boYDCVM4Rr8mb12DY7PmnugLcYi-FPLsNhE42dSnT2s950G9CMIiMnb" alt="Wrong lane entry" />
+            </div>
+            <div class="vd-violation-item__info">
+              <p class="vd-violation-item__title">Wrong Lane Entry</p>
+              <p class="vd-violation-item__meta">14:18:55 · ID: BZ-110</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Analytics -->
+      <div class="vd-panel">
+        <h3 class="vd-panel__title mb-4">Vehicles Over Time</h3>
+        <div class="vd-chart">
+          <svg class="vd-chart__svg" preserveAspectRatio="none">
+            <path class="vd-chart__line" d="M0 80 Q 25 20, 50 60 T 100 40 T 150 70 T 200 10 T 250 50 T 300 30" fill="none" stroke="var(--primary)" stroke-width="2"></path>
+            <path class="vd-chart__area" d="M0 80 Q 25 20, 50 60 T 100 40 T 150 70 T 200 10 T 250 50 T 300 30 L 300 100 L 0 100 Z" fill="url(#vd-gradient-blue)"></path>
+            <defs>
+              <linearGradient id="vd-gradient-blue" x1="0%" x2="0%" y1="0%" y2="100%">
+                <stop offset="0%" style="stop-color:var(--primary);stop-opacity:0.3"></stop>
+                <stop offset="100%" style="stop-color:var(--primary);stop-opacity:0"></stop>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="vd-chart__x-axis">
+            <span>12:00</span><span>13:00</span><span>14:00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Snapshot & Evidence -->
+      <div class="vd-panel">
+        <h3 class="vd-panel__title mb-3">Evidence Vault</h3>
+        <div class="vd-evidence-grid">
+          <img class="vd-evidence-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXyQNh7_3f8uxMqUYDT9QvBDY7VdVxlNDoJAKvuTHLfAPyFmrJ-NA0nwg6whF0C_SC9yWVhNpn79Sc75Bd-X4KniEEcgkX2xpvmisECJG5U0Q3dr2T46_jp2OXOOb2xGYYf072zd8PlozFveLcnWhBln_DzY4PeNyBZ3VABbkstYL9Cwcs3my_8h3W9veCyv597ERj007nmVLZnww6mmRRJpl_sR5AgSuHRZQeQLpGVsnPFTyNvoBy4YeoiMgI9kOmjMnN_mb7SEZ1" alt="Evidence 1" />
+          <img class="vd-evidence-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWAQOVOng9sXa-rbtqk4y8TN5PpK38a86_X2s-Gap0hrUtw6iECIDfnPITfywcyday0dB5hE2heMRWeVaKlUqNFdQW-may1yrIGIR4XsYQ_7ns3M4VW2UTo_WHKpraNhDh0rbzwE5bF2LwpY07t0qTAuFlF_FirNvUcCn72CBgRWS1L8zqm9NQGx8v0LrRMtR7Fz_zkBWco8A1f8evwb9LLJA2U8OxWRsgxr5nr4Fcu1WLy2j0xh3k_QFcXZxytk9ZF-x03ByymnLQ" alt="Evidence 2" />
+        </div>
+        <div class="vd-evidence-actions">
+          <button class="vd-btn-secondary">Save</button>
+          <button class="vd-btn-primary vd-btn-primary--sm">Matrix</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p class="footer__version">FlowSync AI // Tactical Node Network v4.0.2</p>
+      <div class="footer__links">
+        <span class="footer__link">Privacy Protocol</span>
+        <span class="footer__link">Compliance Registry</span>
+        <span class="footer__link">Node Status</span>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module" src="/scripts/guard.js"></script>
+  <script type="module" src="/scripts/main.js"></script>
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVNJE7hLDNaMhk4nVOQ_KjMqqmZAjOMuk&callback=initMap"></script>
+</body>
+</html>
